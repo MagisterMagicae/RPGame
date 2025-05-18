@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "TestProjekt",
-    "slug": "TestProjekt",
+    "name": "Softwareprojekt_RPG",
+    "slug": "Softwareprojekt_RPG",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "testprojekt",
+    "scheme": "softwareprojekt_rpg",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
