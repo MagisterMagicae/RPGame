@@ -34,3 +34,4 @@ class item {
     changeIsVisible():void{this.isVisible = !(this.isVisible);}
 
 }
+export default item
