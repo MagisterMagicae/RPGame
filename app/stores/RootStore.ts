@@ -1,7 +1,13 @@
 import { makeAutoObservable } from 'mobx';
+import { FightStore } from './FightStore';
+
+//zur Verwaltung von States über die ganze App
 
 export class RootStore {
+    fightStore: FightStore;
+
     constructor() {
+        this.fightStore = new FightStore(this);
         makeAutoObservable(this);
     }
 }
