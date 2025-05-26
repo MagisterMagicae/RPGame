@@ -2,10 +2,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { ButtonStyles } from '../styles/button_style';
+import { ImageStyles } from '../styles/image_style';
 import { MetaStyles } from '../styles/meta_style';
-import { TitleStyles } from '../styles/title_style';
 import { GameFightController } from './controllers/GameFightController';
 import { useRootStore } from './stores/RootStore';
 
@@ -35,22 +35,80 @@ const FightScreen = observer(() => {
 
     return (
         <View style={MetaStyles.container}>
-            <View style={TitleStyles.titleContainer}>
-                <Text style={TitleStyles.title}>Fight</Text>
-                <Text style={TitleStyles.subtitle}>Screen</Text>
-            </View>
+
+            <Image
+                style={ImageStyles.monsterImage}
+                source={require('../assets/images/Werwolf.png')}
+            />
+
 
             <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
 
-            <View style={ButtonStyles.buttonContainer}>
-                <TouchableOpacity style={ButtonStyles.button}>
-                    <Text style={ButtonStyles.buttonText}>Angriff</Text>
-                </TouchableOpacity>
+            <View style={ButtonStyles.imageButtonContainer}>
+                <View style={ButtonStyles.multiButton}>
+                    <TouchableOpacity
+                        style={ButtonStyles.imageButton}
+                        onPress={controller.GameFightController}
+                    >
+                        <Image
+                            style={ImageStyles.icon}
+                            source={require('../assets/images/Schwert.png')}
+                        />
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={ButtonStyles.button}>
-                    <Text style={ButtonStyles.buttonText}>Items</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        style={ButtonStyles.imageButton}
+                        onPress={controller.GameFightController}
+                    >
+                        <Image
+                            style={ImageStyles.icon}
+                            source={require('../assets/images/Bogen.png')}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={ButtonStyles.imageButton}
+                        onPress={controller.GameFightController}
+                    >
+                        <Image
+                            style={ImageStyles.icon}
+                            source={require('../assets/images/Stab.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={ButtonStyles.multiButton}>
+                    <TouchableOpacity
+                        style={ButtonStyles.imageButton}
+                        onPress={controller.GameFightController}
+                    >
+                        <Image
+                            style={ImageStyles.icon}
+                            source={require('../assets/images/Trank.png')}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={ButtonStyles.imageButton}
+                        onPress={controller.GameFightController}
+                    >
+                        <Image
+                            style={ImageStyles.icon}
+                            source={require('../assets/images/Kugel.png')}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={ButtonStyles.imageButton}
+                        onPress={controller.GameFightController}
+                    >
+                        <Image
+                            style={ImageStyles.icon}
+                            source={require('../assets/images/Umhang.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
             </View>
+
         </View>
     );
 });
