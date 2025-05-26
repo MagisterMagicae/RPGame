@@ -9,7 +9,7 @@ export class GameFightController {
     }
 
     startNewGame(playerName: string): boolean {
-        const { fightStore } = rootStore; 
+        const { fightStore } = rootStore;
         // Initialize player if not exists
         if (!fightStore.hasActivePlayer()) {
             fightStore.initializePlayer(playerName);
@@ -22,13 +22,13 @@ export class GameFightController {
 
     GameFightController(): void {
         const { fightStore } = rootStore;
-        
+
         // Ensure we have a player
         if (!fightStore.player) {
             throw new Error("No active player found. Please start a new game first.");
         }
-        
-        while(!fightStore.gameOver || !fightStore.playerVictory) {
+
+        while (!fightStore.gameOver || !fightStore.playerVictory) {
             this.enemyTurn();
             this.checkHealth(fightStore.player);
             fightStore.setTurn(true); // Player's turn
@@ -41,13 +41,13 @@ export class GameFightController {
         }
     }
 
-    enemyTurn(): void {   //Funktion um nächsten Move vom Gegner zu bestimmen, aktuell können Gegner nur hauen
+    enemyTurn(): void {
         const { fightStore } = rootStore;
         rootStore.fightStore.setTurn(false);
         this.inDamage();
     }
 
-    inDamage(): void {   
+    inDamage(): void {
         const { fightStore } = rootStore;
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
         const damage = fightStore.currentMonster.getCurrentAttack();
@@ -55,7 +55,7 @@ export class GameFightController {
         fightStore.player.mathCurrentHealthPoints(-damage);
     }
 
-    outDamage(): void {   
+    outDamage(): void {
         const { fightStore } = rootStore;
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
         const damage = fightStore.player.getCurrentAttack();
@@ -64,15 +64,41 @@ export class GameFightController {
     }
 
     checkHealth(entity: Entity): void {
-        //hi krystyna, pls setze fightstore.gameover auf true wenn der Player stirbt oder fightstore.playervictory auf true wenn der Gegner stirbt
+        const { fightStore } = rootStore;
+
+        if (!fightStore.player || !fightStore.currentMonster) return;
+
+        const playerDead = fightStore.player.getCurrentHealthPoints() <= 0;
+        const monsterDead = fightStore.currentMonster.getCurrentHealthPoints() <= 0;
+
+        // Beide sind tot → Game Over
+        if (playerDead && monsterDead) {
+            fightStore.setGameOver(true);
+            fightStore.setDescription("Du wurdest besiegt!");
+            return;
+        }
+
+        // Nur Spieler tot → Game Over
+        if (playerDead) {
+            fightStore.setGameOver(true);
+            fightStore.setDescription("Du wurdest besiegt!");
+            return;
+        }
+
+        // Nur Gegner tot → Victory
+        if (monsterDead) {
+            fightStore.setPlayerVictory(true);
+            fightStore.setDescription(`Du hast ${fightStore.currentMonster.getName()} besiegt!`);
+            return;
+        }
     }
 
-    useItem(): void { //hi alex wir müssten wahrscheinlich einen Inventory store anlegen und dann hier die items auslesen
+    useItem(): void {
+        // hi alex wir müssten wahrscheinlich einen Inventory store anlegen und dann hier die items auslesen
     }
 
     endFight(): void {
         const { fightStore } = rootStore;
-        //hi krystyna, am Ende resetFight() aufrufen pls
         fightStore.resetFight();
     }
-} 
+}
