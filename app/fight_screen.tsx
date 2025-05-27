@@ -14,6 +14,7 @@ import { useRootStore } from './stores/RootStore';
 type RootStackParamList = {
     StartScreen: undefined;
     FightScreen: undefined;
+    VictoryScreen: undefined;
 };
 
 type FightScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FightScreen'>;
@@ -33,6 +34,16 @@ const FightScreen = observer(() => {
             }, 2000);
         }
     }, [fightStore.gameOver]);
+
+    // Wenn der Spieler gewinnt, dann wird man auf den FightScreen zurückgeleitet
+     useEffect(() => {
+        if (fightStore.playerVictory) {
+            // kleiner Delay
+            setTimeout(() => {
+                navigation.navigate('FightScreen');
+            }, 2000);
+        }
+    }, [fightStore.playerVictory]);
 
     return (
         <View style={MetaStyles.container}>
