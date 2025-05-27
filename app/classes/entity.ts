@@ -54,13 +54,13 @@ export abstract class Entity {
     //math Methoden:
     //Erhöhe oder verringere aktuellen Wert um amount. Der Wert darf außerdem nicht unter 0 fallen und auch nicht über dem Maximum liegen
     mathCurrentHealthPoints(amount: number): void {
-        this.currentHealthPoints = Math.min(this.maxHealthPoints, Math.max(0, this.currentHealthPoints + amount));
+        this.currentHealthPoints += amount;
     }
     mathCurrentAttack(amount: number): void {
-        this.currentAttack = Math.min(this.maxAttack, Math.max(0, this.currentAttack + amount));
+        this.currentAttack += amount;
     }
     mathCurrentDefense(amount: number): void {
-        this.currentDefense = Math.min(this.maxDefense, Math.max(0, this.currentDefense + amount));
+        this.currentDefense += amount;
     }
     //Weil Max Werte sich ändern können:
     mathMaxHealthPoints(amount: number): void {

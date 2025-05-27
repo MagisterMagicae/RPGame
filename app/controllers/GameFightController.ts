@@ -20,9 +20,9 @@ export class GameFightController {
         return true;
     }
 
-   FightController(): void {
+   FightController(action:number): void {
         const { fightStore } = rootStore;
-
+        const { inventoryStore } = rootStore;
         // Ensure we have a player
         if (!fightStore.player) {
             throw new Error("No active player found. Please start a new game first.");
@@ -34,7 +34,26 @@ export class GameFightController {
         }
 
         // Player's turn
-        this.outDamage();
+        switch(action){
+            case 0:
+                this.outDamage();
+                break;
+            case 1:
+                this.outDamage();
+                break;
+            case 2:
+                this.outDamage();
+                break;
+            case 3:
+                this.useItem(3);
+                break;
+            case 4:
+                this.useItem(4);
+                break;
+            case 5:
+                this.useItem(5);
+                break;
+        }
         this.checkHealth(fightStore.currentMonster!);
 
         // If the fight isn't over after player's turn, do enemy turn
@@ -57,7 +76,7 @@ export class GameFightController {
     inDamage(): void {
         const { fightStore } = rootStore;
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
-        const damage = fightStore.currentMonster.getCurrentAttack();
+        const damage = Math.max(0,fightStore.currentMonster.getCurrentAttack()+10-fightStore.player.getCurrentDefense());
         fightStore.setDescription(`${fightStore.currentMonster.getName()} greift an und verursacht ${damage} Schaden!`);
         fightStore.player.mathCurrentHealthPoints(-damage);
     }
@@ -65,7 +84,7 @@ export class GameFightController {
     outDamage(): void {
         const { fightStore } = rootStore;
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
-        const damage = fightStore.player.getCurrentAttack();
+        const damage = Math.max(0,fightStore.player.getCurrentAttack() - fightStore.currentMonster.getCurrentDefense());
         fightStore.setDescription(`${fightStore.player.getName()} greift an und verursacht ${damage} Schaden!`);
         fightStore.currentMonster.mathCurrentHealthPoints(-damage);
     }
@@ -100,8 +119,41 @@ export class GameFightController {
         }
     }
 
-    useItem(): void {
-        // hi alex wir müssten wahrscheinlich einen Inventory store anlegen und dann hier die items auslesen
+    useItem(itemIndex:number): void {
+        const {fightStore} = rootStore;
+        const{ inventoryStore } = rootStore;
+        if(inventoryStore.hasItem(itemIndex)){
+        switch(itemIndex){
+            case 3:
+                fightStore.player?.mathCurrentHealthPoints(20);
+                fightStore.setDescription(`Du benutzt einen Heiltrank. Du regenerierst 30 HP!`);
+                break;
+            case 4:
+                fightStore.player?.mathCurrentAttack(5);
+                fightStore.setDescription(`Du benutzt eine Zauberkugel. Dein Angriff steigt um 10!`);
+                break;
+            case 5:
+                fightStore.player?.mathCurrentDefense(2);
+                fightStore.setDescription(`Du benutzt einen Umhang. Deine Verteidigung steigt um 2!`);
+                break;
+            default:
+        }
+    }
+    else{
+    switch(itemIndex){
+            case 3:
+                fightStore.setDescription(`Du hast keine Heiltränke mehr...`);
+                break;
+            case 4:
+                fightStore.setDescription(`Du hast keine Zauberkugeln mehr...`);
+                break;
+            case 5:
+                fightStore.setDescription(`Du hast keine Umhänge mehr...`);
+                break;
+            default:
+        }
+    }
+    inventoryStore.mathAmount(itemIndex, -1);
     }
 
     endFight(): void {
