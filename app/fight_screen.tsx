@@ -40,7 +40,7 @@ const FightScreen = observer(() => {
         if (fightStore.playerVictory) {
             // kleiner Delay
             setTimeout(() => {
-                navigation.navigate('FightScreen');
+                navigation.navigate('VictoryScreen');
             }, 2000);
         }
     }, [fightStore.playerVictory]);

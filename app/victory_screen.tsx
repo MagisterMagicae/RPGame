@@ -26,7 +26,7 @@ const VictoryScreen = observer(({ navigation }: Props) => {
 
 
 
-    const handleStartGame = () => {
+    const handleStartRound = () => {
         // Always reset the fight state and set up a new monster
         fightStore.resetFight();
         fightStore.setCurrentMonster(2, "Werwolf");
@@ -43,7 +43,7 @@ const VictoryScreen = observer(({ navigation }: Props) => {
             <View style={ButtonStyles.buttonContainer}>
                             <TouchableOpacity 
                                 style={ButtonStyles.button} 
-                                onPress={handleStartGame}
+                                onPress={handleStartRound}
                             >
                                <Text style={ButtonStyles.buttonText}>Nächster Kampf</Text>
                             </TouchableOpacity>
