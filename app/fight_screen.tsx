@@ -21,7 +21,11 @@ type FightScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FightS
 const FightScreen = observer(() => {
     const navigation = useNavigation<FightScreenNavigationProp>();
     const { fightStore } = useRootStore();
-    const controller = new GameFightController();
+    const [controller] = React.useState(() => new GameFightController());
+
+    const handleFightAction = React.useCallback(() => {
+        controller.FightController();
+    }, [controller]);
 
     // Wenn der Spieler verliert, dann wird man auf den StartScreen zurückgeleitet
     useEffect(() => {
@@ -48,7 +52,7 @@ const FightScreen = observer(() => {
                 <View style={ButtonStyles.multiButton}>
                     <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={controller.GameFightController}
+                        onPress={handleFightAction}
                     >
                         <Image
                             style={ImageStyles.icon}
@@ -58,7 +62,7 @@ const FightScreen = observer(() => {
 
                     <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={controller.GameFightController}
+                        onPress={handleFightAction}
                     >
                         <Image
                             style={ImageStyles.icon}
@@ -68,7 +72,7 @@ const FightScreen = observer(() => {
 
                     <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={controller.GameFightController}
+                        onPress={handleFightAction}
                     >
                         <Image
                             style={ImageStyles.icon}
@@ -79,7 +83,7 @@ const FightScreen = observer(() => {
                 <View style={ButtonStyles.multiButton}>
                     <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={controller.GameFightController}
+                        onPress={handleFightAction}
                     >
                         <Image
                             style={ImageStyles.icon}
@@ -89,7 +93,7 @@ const FightScreen = observer(() => {
 
                     <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={controller.GameFightController}
+                        onPress={handleFightAction}
                     >
                         <Image
                             style={ImageStyles.icon}
@@ -99,7 +103,7 @@ const FightScreen = observer(() => {
 
                     <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={controller.GameFightController}
+                        onPress={handleFightAction}
                     >
                         <Image
                             style={ImageStyles.icon}

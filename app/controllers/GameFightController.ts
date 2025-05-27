@@ -28,16 +28,23 @@ export class GameFightController {
             throw new Error("No active player found. Please start a new game first.");
         }
 
-        while (!fightStore.gameOver || !fightStore.playerVictory) {
-            this.enemyTurn();
-            this.checkHealth(fightStore.player);
-            fightStore.setTurn(true); // Player's turn
-            this.useItem();
-            this.outDamage();
-            this.checkHealth(fightStore.currentMonster!);
-        }
         if (fightStore.gameOver || fightStore.playerVictory) {
             this.endFight();
+            return;
+        }
+
+        // Player's turn
+        this.outDamage();
+        this.checkHealth(fightStore.currentMonster!);
+
+        // If the fight isn't over after player's turn, do enemy turn
+        if (!fightStore.gameOver && !fightStore.playerVictory) {
+            setTimeout(() => {
+                this.enemyTurn();
+                if (fightStore.player) {
+                    this.checkHealth(fightStore.player);
+                }
+            }, 1000); // Add a 1 second delay for better UX
         }
     }
 
