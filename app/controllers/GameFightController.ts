@@ -20,7 +20,7 @@ export class GameFightController {
         return true;
     }
 
-    GameFightController(): void {
+   FightController(): void {
         const { fightStore } = rootStore;
 
         // Ensure we have a player
