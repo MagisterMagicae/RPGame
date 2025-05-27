@@ -40,11 +40,18 @@ const FightScreen = observer(() => {
     return (
         <View style={MetaStyles.container}>
 
+            <Text style={{ marginBottom: 10 }}>
+                HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
+            </Text>
+
             <Image
                 style={ImageStyles.monsterImage}
                 source={require('../assets/images/Werwolf.png')}
             />
 
+            <Text style={{ marginBottom: 10 }}>
+                HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
+            </Text>
 
             <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
 
