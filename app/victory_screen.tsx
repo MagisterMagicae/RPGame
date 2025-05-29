@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
@@ -12,24 +13,31 @@ type RootStackParamList = {
     StartScreen: undefined;
     FightScreen: undefined;
     VictoryScreen: undefined;
+    ShopScreen: undefined;
 };
 
 type VictoryScreenNavigationProp = StackNavigationProp<RootStackParamList, 'VictoryScreen'>;
 
-type Props = {
-    navigation: VictoryScreenNavigationProp;
-};
-
-
-const VictoryScreen = observer(({ navigation }: Props) => {
+const VictoryScreen = observer(() => {
+    const navigation = useNavigation<VictoryScreenNavigationProp>();
     const { fightStore } = useRootStore();
 
-    const handleStartRound = () => {
+
+        //aktuell ungenutzt aber hier für die Zukunft:
+        const handleStartRound = () => {
         // Always reset the fight state and set up a new monster
         fightStore.resetFight();
         fightStore.setCurrentMonster();
 
         navigation.navigate('FightScreen');
+    }; 
+
+    const shopTime = () => {
+        // Always reset the fight state and set up a new monster
+        fightStore.resetFight();
+        fightStore.setCurrentMonster();
+
+        navigation.navigate('ShopScreen');
     };
 
     return (
@@ -39,13 +47,13 @@ const VictoryScreen = observer(({ navigation }: Props) => {
                 <Text style={TitleStyles.subtitle}>Awaiting next battle...</Text>
             </View>
             <View style={ButtonStyles.buttonContainer}>
-                            <TouchableOpacity 
-                                style={ButtonStyles.button} 
-                                onPress={(handleStartRound)}
-                            >
-                               <Text style={ButtonStyles.buttonText}>Nächster Kampf</Text>
-                            </TouchableOpacity>
-                        </View>
+                <TouchableOpacity 
+                    style={ButtonStyles.button} 
+                    onPress={shopTime}
+                >
+                    <Text style={ButtonStyles.buttonText}>Zum Shop</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 });

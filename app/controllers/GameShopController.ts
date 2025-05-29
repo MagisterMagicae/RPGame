@@ -6,13 +6,14 @@ type RootStackParamList = {
   StartScreen: undefined;
   FightScreen: undefined;
   VictoryScreen: undefined;
+  ShopScreen: undefined;
 };
 
 export class GameShopController {
   player: Player;
-  navigation: StackNavigationProp<RootStackParamList, 'FightScreen'>;
+  navigation: StackNavigationProp<RootStackParamList, 'ShopScreen'>;
 
-  constructor(player: Player, navigation: StackNavigationProp<RootStackParamList, 'FightScreen'>) {
+  constructor(player: Player, navigation: StackNavigationProp<RootStackParamList, 'ShopScreen'>) {
     this.player = player;
     this.navigation = navigation;
   }

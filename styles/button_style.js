@@ -11,13 +11,28 @@ export const ButtonStyles = StyleSheet.create({
         gap: 16,
         marginTop: 8,
     },
-    imageButtonContainer: {
+        shopButtonContainer: {
         width: "80%",
         flex: 1,
         justifyContent: 'center',
+        marginHorizontal: 16,
+        gap: 1,
+        marginTop: 1,
+    },
+    shopContainer: {
+        width: "80%",
+        justifyContent: 'center',
+        marginHorizontal: 16,
+        gap: 8,
+        marginTop: 2,
+        marginBottom: 8,
+    },
+    imageButtonContainer: {
+        width: "80%",
+        justifyContent: 'flex-end',
         marginHorizontal: 0,
-        gap: 0,
-        marginTop: -75,
+        paddingTop: 20,
+        paddingBottom: 20,
     },
     button: {
         backgroundColor: "#4a90e2",
@@ -33,7 +48,8 @@ export const ButtonStyles = StyleSheet.create({
     },
     multiButton: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginVertical: 5,
     },
     imageButton: {
         backgroundColor: "#00000000",
