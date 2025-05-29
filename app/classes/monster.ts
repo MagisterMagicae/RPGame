@@ -1,8 +1,44 @@
+import { EffectType } from "./effecttype";
 import { Entity } from "./entity";
 
 export class Monster extends Entity {
-  constructor(entityID: number, name: string) {
-    // Beispielwerte für Monster
-    super(entityID, name,100, 20, 10); // MaxHP, Attack, Defense
+
+  //The constructor automatically creates and assigns the values to class properties
+
+  constructor(entityID: number = 2,
+    name: string = "Monster",
+
+    currentHealthPoints: number = 100,
+    maxHealthPoints: number = 100,
+
+    currentAttack: number = 20,
+    maxAttack: number = 1000000,
+
+    currentDefense: number = 10,
+    maxDefense: number = 1000000,
+
+    startInventory: Array<number> = [2, 1, 0, 99, 0, 99],
+    sprite:number = require("../../assets/images/Werwolf.png"),
+
+    protected resistance: number = EffectType.HEILUNG,
+    protected weakness: number = EffectType.HEILUNG
+  ) {
+
+    // Rufe den Entity-Konstruktor mit spezifischen Startwerten auf
+
+    super(
+      entityID,
+      name,
+      currentHealthPoints,
+      maxHealthPoints,
+      currentAttack,
+      maxAttack,
+      currentDefense,
+      maxDefense,
+      startInventory,
+      sprite);
   }
+
+  getResistance(): number { return this.resistance; }
+  getWeakness(): number { return this.weakness; }
 }

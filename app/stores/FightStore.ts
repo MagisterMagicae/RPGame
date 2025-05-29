@@ -4,7 +4,6 @@ import { Player } from '../classes/player';
 import { RootStore } from './RootStore';
 
 export class FightStore {
-    isTurn: boolean = false;
     gameOver: boolean = false;
     playerVictory: boolean = false;
     currentMonster: Monster | null = null;
@@ -19,10 +18,6 @@ export class FightStore {
         this.fightDescription = text;
     }
 
-    clearDescription() {
-        this.fightDescription = '';
-    }
-
     initializePlayer(name: string) {
         // Only initialize if player doesn't exist yet
         if (!this.player) {
@@ -30,32 +25,11 @@ export class FightStore {
         }
     }
 
-    hasActivePlayer(): boolean {
-        return this.player !== null;
-    }
-
-    setCurrentMonster(id: number, name: string) {
-        this.currentMonster = new Monster(id, name);
+    setCurrentMonster() {
+        //Rand here
+        const name = "Werwolf";
+        this.currentMonster = new Monster(2,name);
         this.setDescription(`Ein wildes ${name} erscheint!`);
-    }
-
-    setTurn(value: boolean) {
-        this.isTurn = value;
-        if (value) {
-            this.setDescription("Du bist am Zug!");
-        }
-    }
-
-    toggleTurn() {
-        this.isTurn = !this.isTurn;
-    }
-
-    get isPlayerTurn() {
-        return this.isTurn;
-    }
-
-    get isMonsterTurn() {
-        return !this.isTurn;
     }
 
     setGameOver(value: boolean) {
@@ -73,10 +47,9 @@ export class FightStore {
     }
 
     resetFight() {
-        this.isTurn = false;
         this.gameOver = false;
         this.playerVictory = false;
         this.currentMonster = null;
-        this.clearDescription();
+        this.setDescription('');
     }
 } 
