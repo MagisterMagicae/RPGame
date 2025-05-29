@@ -1,11 +1,11 @@
 import { EffectType } from "./effecttype";
-import { item } from "./item";
+import { Item } from "./item";
 
 export abstract class Entity {
 
     //This is NOT safe, but I think if we want to get items from the inventory we need it open
 
-    inventory: Array<item> = [];
+    inventory: Array<Item> = [];
 
     //The constructor automatically creates and assigns the values to class properties
 
@@ -26,12 +26,12 @@ export abstract class Entity {
         protected sprite: number = 0,
     ) {
 
-        this.inventory[0] = new item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, require("../../assets/images/Schwert.png"))
-        this.inventory[1] = new item(1, "Bogen", this.startInventory[1], EffectType.BOGEN, true, false, true, require("../../assets/images/Bogen.png"))
-        this.inventory[2] = new item(2, "Stab", this.startInventory[2], EffectType.STAB, true, true, true, require("../../assets/images/Stab.png"))
-        this.inventory[3] = new item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, require("../../assets/images/Trank.png"))
-        this.inventory[4] = new item(4, "Kugel", this.startInventory[4], EffectType.ATKBOOST, false, true, true, require("../../assets/images/Kugel.png"))
-        this.inventory[5] = new item(5, "Umhang", this.startInventory[5], EffectType.DEFBOOST, false, true, true, require("../../assets/images/Umhang.png"))
+        this.inventory[0] = new Item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, 10, require("../../assets/images/Schwert.png")) //Bsp. Cost: 10
+        this.inventory[1] = new Item(1, "Bogen", this.startInventory[1], EffectType.BOGEN, true, false, true, 10, require("../../assets/images/Bogen.png"))
+        this.inventory[2] = new Item(2, "Stab", this.startInventory[2], EffectType.STAB, true, true, true, 10, require("../../assets/images/Stab.png"))
+        this.inventory[3] = new Item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, 10, require("../../assets/images/Trank.png"))
+        this.inventory[4] = new Item(4, "Kugel", this.startInventory[4], EffectType.ATKBOOST, false, true, true, 10, require("../../assets/images/Kugel.png"))
+        this.inventory[5] = new Item(5, "Umhang", this.startInventory[5], EffectType.DEFBOOST, false, true, true, 10, require("../../assets/images/Umhang.png"))
 
     }
 
@@ -46,14 +46,17 @@ export abstract class Entity {
 
     //math Methoden:
     //Erhöhe oder verringere aktuellen Wert um amount. Der Wert darf außerdem nicht unter 0 fallen und auch nicht über dem Maximum liegen
-    mathCurrentHealthPoints(amount: number): void { 
-        this.currentHealthPoints = Math.min(this.maxHealthPoints, Math.max(0, this.currentHealthPoints + amount)); }
-    
-    mathCurrentAttack(amount: number): void { 
-        this.currentAttack = Math.min(this.maxAttack, Math.max(0, this.currentAttack + amount)); }
+    mathCurrentHealthPoints(amount: number): void {
+        this.currentHealthPoints = Math.min(this.maxHealthPoints, Math.max(0, this.currentHealthPoints + amount));
+    }
 
-    mathCurrentDefense(amount: number): void { 
-        this.currentDefense = Math.min(this.maxDefense, Math.max(0, this.currentDefense + amount)); }
+    mathCurrentAttack(amount: number): void {
+        this.currentAttack = Math.min(this.maxAttack, Math.max(0, this.currentAttack + amount));
+    }
+
+    mathCurrentDefense(amount: number): void {
+        this.currentDefense = Math.min(this.maxDefense, Math.max(0, this.currentDefense + amount));
+    }
 
     //Weil Max Werte sich ändern können:
     mathMaxHealthPoints(amount: number): void {

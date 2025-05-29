@@ -1,6 +1,6 @@
 import { EffectType } from "./effecttype";
 
-export class item {
+export class Item {
 
     //The constructor automatically creates and assigns the values to class properties
 
@@ -15,6 +15,8 @@ export class item {
         protected isConsumable: boolean = false,
         protected isVisible: boolean = false,
 
+        protected cost: number = 0,
+        
         protected sprite: number = 0,
     ) { }
 
@@ -25,6 +27,7 @@ export class item {
     getIsWeapon(): boolean { return this.isWeapon; }
     getIsConsumable(): boolean { return this.isConsumable; }
     getIsVisible(): boolean { return this.isVisible; }
+    getCost(): number { return this.cost; }
     getSpriteDirectory(): number { return this.sprite; }
 
     toggleIsVisible(): void { this.isVisible = !(this.isVisible); }
