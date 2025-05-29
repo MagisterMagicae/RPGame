@@ -26,13 +26,13 @@ const StartScreen = observer(({ navigation }: Props) => {
 
     const handleStartGame = () => {
         // Only initialize player if they don't exist yet
-        if (!fightStore.hasActivePlayer()) {
+        if (!fightStore.player) {
             fightStore.initializePlayer("Spieler");
         }
         
         // Always reset the fight state and set up a new monster
         fightStore.resetFight();
-        fightStore.setCurrentMonster(2, "Werwolf");
+        fightStore.setCurrentMonster();
         
         navigation.navigate('FightScreen');
     };
@@ -50,11 +50,14 @@ const StartScreen = observer(({ navigation }: Props) => {
                     onPress={handleStartGame}
                 >
                     <Text style={ButtonStyles.buttonText}>
-                        {fightStore.hasActivePlayer() ? 'Weiterspielen' : 'Neues Spiel'}
+                        {fightStore.player ? 'Weiterspielen' : 'Neues Spiel'}
                     </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={ButtonStyles.button}>
+                <TouchableOpacity 
+                    style={ButtonStyles.button}
+                    onPress={()=>fightStore.player = null}
+                    >
                     <Text style={ButtonStyles.buttonText}>Spielstand löschen</Text>
                 </TouchableOpacity>
 

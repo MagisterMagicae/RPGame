@@ -1,10 +1,10 @@
 import { makeAutoObservable } from 'mobx';
+import EffectType from '../classes/effecttype';
 import { Monster } from '../classes/monster';
 import { Player } from '../classes/player';
 import { RootStore } from './RootStore';
 
 export class FightStore {
-    isTurn: boolean = false;
     gameOver: boolean = false;
     playerVictory: boolean = false;
     currentMonster: Monster | null = null;
@@ -19,10 +19,6 @@ export class FightStore {
         this.fightDescription = text;
     }
 
-    clearDescription() {
-        this.fightDescription = '';
-    }
-
     initializePlayer(name: string) {
         // Only initialize if player doesn't exist yet
         if (!this.player) {
@@ -30,32 +26,34 @@ export class FightStore {
         }
     }
 
-    hasActivePlayer(): boolean {
-        return this.player !== null;
-    }
+    setCurrentMonster() {
+        if (!this.player) return; //Sicherheitscheck
 
-    setCurrentMonster(id: number, name: string) {
-        this.currentMonster = new Monster(id, name);
-        this.setDescription(`Ein wildes ${name} erscheint!`);
-    }
+        const rand = Math.floor(Math.random() * 3);
+        var name: string;
+        const Hp = Math.floor(this.player?.getMaxHealthPoints() + 50 * (Math.random() * 2 - 1));
+        const Att = Math.floor(this.player?.getCurrentAttack() + 10 * (Math.random() * 2 - 1));
+        const Dev = Math.floor(this.player?.getCurrentDefense() + 10 * (Math.random() * 2 - 1));
+        switch (rand) {
+            case 0:
+                name = "Werwolf";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Werwolf.png"), EffectType.BOGEN, EffectType.STAB);
+                this.setDescription(`Ein wilder ${name} erscheint!`);
+                break;
+            case 1:
+                name = "Schleim";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Slime.png"), EffectType.SCHWERT, EffectType.BOGEN);
+                this.setDescription(`Ein wilder ${name} erscheint!`);
+                break;
+            case 2:
+                name = "Zombie";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Zombie.png"), EffectType.STAB, EffectType.SCHWERT);
+                this.setDescription(`Ein wilder ${name} erscheint!`);
+                break;
 
-    setTurn(value: boolean) {
-        this.isTurn = value;
-        if (value) {
-            this.setDescription("Du bist am Zug!");
         }
-    }
 
-    toggleTurn() {
-        this.isTurn = !this.isTurn;
-    }
 
-    get isPlayerTurn() {
-        return this.isTurn;
-    }
-
-    get isMonsterTurn() {
-        return !this.isTurn;
     }
 
     setGameOver(value: boolean) {
@@ -73,10 +71,9 @@ export class FightStore {
     }
 
     resetFight() {
-        this.isTurn = false;
         this.gameOver = false;
         this.playerVictory = false;
         this.currentMonster = null;
-        this.clearDescription();
+        this.setDescription('');
     }
 } 

@@ -15,5 +15,3 @@ export default function Index (){
       </Pages.Navigator>
   );
 }
-
-//Krystyna Überschreiben
