@@ -11,11 +11,11 @@ export class Player extends Entity {
         currentHealthPoints: number = 100,
         maxHealthPoints: number = 100,
 
-        currentAttack: number = 40,
-        maxAttack: number = 1000000,
+        currentAttack: number = 20,
+        maxAttack: number = 999,
 
         currentDefense: number = 10,
-        maxDefense: number = 1000000,
+        maxDefense: number = 999,
 
         startInventory: Array<number> = [1, 1, 3, 5, 5, 2],
 

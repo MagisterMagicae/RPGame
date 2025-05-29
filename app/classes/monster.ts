@@ -12,10 +12,10 @@ export class Monster extends Entity {
     maxHealthPoints: number = 100,
 
     currentAttack: number = 20,
-    maxAttack: number = 1000000,
+    maxAttack: number = 999,
 
     currentDefense: number = 10,
-    maxDefense: number = 1000000,
+    maxDefense: number = 999,
 
     startInventory: Array<number> = [2, 1, 0, 99, 0, 99],
     sprite:number = require("../../assets/images/Werwolf.png"),

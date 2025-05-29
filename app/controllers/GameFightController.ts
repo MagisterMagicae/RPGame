@@ -82,9 +82,6 @@ export class GameFightController {
 
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
 
-        if (fightStore.player.inventory[itemIndex].getIsConsumable()) {
-            fightStore.player.inventory[itemIndex].mathAmount(-1);
-        }
         if (fightStore.player.inventory[itemIndex].getIsWeapon()) {
             this.outDamage(itemIndex);
         } else {
@@ -92,7 +89,7 @@ export class GameFightController {
                 switch (itemIndex) {
                     case 3:
                         fightStore.player?.mathCurrentHealthPoints(20);
-                        fightStore.setDescription(`Du benutzt einen Heiltrank. Du regenerierst 30 HP!`);
+                        fightStore.setDescription(`Du benutzt einen Heiltrank. Du regenerierst 20 HP!`);
                         break;
                     case 4:
                         fightStore.player?.mathCurrentAttack(5);
@@ -116,20 +113,22 @@ export class GameFightController {
                         fightStore.setDescription(`Du hast keine Umhänge mehr...`);
                         break;
                     default:
+                }
+
+                
+
             }
         }
-        fightStore.player.inventory[itemIndex].mathAmount(-1);
-        }
+        if (fightStore.player.inventory[itemIndex].getIsConsumable()) {
+                    fightStore.player.inventory[itemIndex].mathAmount(-1);
+                }
     }
 
     enemyItem(itemIndex: number): void {
         const { fightStore } = rootStore;
 
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
-
-        if (fightStore.currentMonster.inventory[itemIndex].getIsConsumable()) {
-            fightStore.currentMonster.inventory[itemIndex].mathAmount(-1);
-        }
+        
         if (fightStore.currentMonster.inventory[itemIndex].getIsWeapon()) {
             this.inDamage(itemIndex);
         } else {
@@ -137,7 +136,7 @@ export class GameFightController {
                 switch (itemIndex) {
                     case 3:
                         fightStore.currentMonster?.mathCurrentHealthPoints(20);
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} regeneriert 30 HP!`);
+                        fightStore.setDescription(`${fightStore.currentMonster.getName()} regeneriert 20 HP!`);
                         break;
                     case 4:
                         fightStore.currentMonster?.mathCurrentAttack(5);
@@ -161,10 +160,13 @@ export class GameFightController {
                         fightStore.setDescription(`${fightStore.currentMonster.getName()} scheitere beim Versuch zu Verteidigung zu erhoehen`);
                         break;
                     default:
+                }
             }
         }
+        if (fightStore.currentMonster.inventory[itemIndex].getIsConsumable()) {
+            fightStore.currentMonster.inventory[itemIndex].mathAmount(-1);
+        }
     }
-}
 
     endFight(): void {
         const { fightStore } = rootStore;
