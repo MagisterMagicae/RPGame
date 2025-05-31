@@ -73,41 +73,45 @@ const FightScreen = observer(() => {
 
     return (
         <View style={MetaStyles.container}>
+            
+        <Text style={{ marginBottom: 10 }}>
+            {fightStore.fightCount}
+        </Text>
+        
+        <Text style={{ marginBottom: 10 }}>
+            HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
+        </Text>
 
-            <Text style={{ marginBottom: 10 }}>
-                HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
-            </Text>
+        <Image
+            style={ImageStyles.monsterImage}
+            source={fightStore.currentMonster?.getSpriteDirectory()}
+        />
 
-            <Image
-                style={ImageStyles.monsterImage}
-                source={fightStore.currentMonster?.getSpriteDirectory()}
-            />
+        <Text style={{ marginBottom: 10 }}>
+            HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
+        </Text>
 
-            <Text style={{ marginBottom: 10 }}>
-                HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
-            </Text>
+        <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
 
-            <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
+        <View style={ButtonStyles.imageButtonContainer}>
+            <View style={ButtonStyles.multiButton}>
 
-            <View style={ButtonStyles.imageButtonContainer}>
-                <View style={ButtonStyles.multiButton}>
-
-                    {button(0)}
-                    {button(1)}
-                    {button(2)}
-                    
-                </View>
-                <View style={ButtonStyles.multiButton}>
-                    
-                    {button(3)}
-                    {button(4)}
-                    {button(5)}
-
-                </View>
+                {button(0)}
+                {button(1)}
+                {button(2)}
+                
             </View>
+            <View style={ButtonStyles.multiButton}>
+                
+                {button(3)}
+                {button(4)}
+                {button(5)}
 
+            </View>
         </View>
-    );
+
+    </View>
+);
 });
 
 export default FightScreen;

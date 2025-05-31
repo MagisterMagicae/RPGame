@@ -36,18 +36,22 @@ const ShopScreen = observer(() => {
 
         if (!fightStore.player) return; //Sicherheitscheck
 
-            return(
-                
+        return(
+            <View style={{ alignItems: 'center' }}>
                 <TouchableOpacity
-                        style={ButtonStyles.imageButton}
-                        onPress={()=>{}} //hi krystyna hier in die swirly klammern kommt rein was die buttons machen
-                    >
-                        <Image
-                            style={ImageStyles.icon}
-                            source={fightStore.player.inventory[itemID].getSpriteDirectory()}
-                        />
-                    </TouchableOpacity>
-            )
+                    style={ButtonStyles.imageButton}
+                    onPress={()=>{}} //hi krystyna hier in die swirly klammern kommt rein was die buttons machen
+                >
+                    <Image
+                        style={ImageStyles.icon}
+                        source={fightStore.player.inventory[itemID].getSpriteDirectory()}
+                    />
+                </TouchableOpacity>
+                <Text style={{ marginTop: 5 }}>
+                    {fightStore.player.inventory[itemID].getCost()} Gold
+                </Text>
+            </View>
+        )
     }
 
     return (

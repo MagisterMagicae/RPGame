@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 
 export const TitleStyles = StyleSheet.create({
     titleContainer: {
-        alignItems: "flex-end",
+        alignItems: "center",
         marginBottom: 40,
     },
     title: {

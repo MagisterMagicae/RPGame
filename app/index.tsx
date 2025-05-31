@@ -9,7 +9,9 @@ const Pages = createNativeStackNavigator();
 
 export default function Index (){
   return (
-      <Pages.Navigator>
+      <Pages.Navigator screenOptions={{
+        //headerShown: false <- um den screen navigator header zu entfernen
+      }}>
         <Pages.Screen name = "StartScreen" component={StartScreen} />
         <Pages.Screen name = "FightScreen" component={FightScreen} />
         <Pages.Screen name = "VictoryScreen" component={VictoryScreen} />

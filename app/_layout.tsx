@@ -4,7 +4,9 @@ import { RootStoreProvider } from "./stores/RootStoreProvider";
 export default function RootLayout() {
   return (
     <RootStoreProvider>
-      <Stack />
+      <Stack screenOptions={{
+        headerShown: false
+      }}/>
     </RootStoreProvider>
   );
 }

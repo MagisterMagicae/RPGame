@@ -22,22 +22,16 @@ const VictoryScreen = observer(() => {
     const navigation = useNavigation<VictoryScreenNavigationProp>();
     const { fightStore } = useRootStore();
 
-
-        //aktuell ungenutzt aber hier für die Zukunft:
-        const handleStartRound = () => {
-        // Always reset the fight state and set up a new monster
-        fightStore.resetFight();
-        fightStore.setCurrentMonster();
-
-        navigation.navigate('FightScreen');
-    }; 
-
-    const shopTime = () => {
-        // Always reset the fight state and set up a new monster
-        fightStore.resetFight();
-        fightStore.setCurrentMonster();
-
-        navigation.navigate('ShopScreen');
+    const startNextRound = () => {
+        if (fightStore.fightCount % 1 === 0) {
+            fightStore.resetFight();
+            fightStore.setCurrentMonster();
+            navigation.navigate('ShopScreen');
+        } else {
+            fightStore.resetFight();
+            fightStore.setCurrentMonster();
+            navigation.navigate('FightScreen');
+        }
     };
 
     return (
@@ -49,9 +43,9 @@ const VictoryScreen = observer(() => {
             <View style={ButtonStyles.buttonContainer}>
                 <TouchableOpacity 
                     style={ButtonStyles.button} 
-                    onPress={shopTime}
+                    onPress={startNextRound}
                 >
-                    <Text style={ButtonStyles.buttonText}>Zum Shop</Text>
+                    <Text style={ButtonStyles.buttonText}>weiter</Text>
                 </TouchableOpacity>
             </View>
         </View>

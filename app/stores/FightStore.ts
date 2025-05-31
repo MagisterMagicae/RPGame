@@ -10,6 +10,7 @@ export class FightStore {
     currentMonster: Monster | null = null;
     player: Player | null = null;
     fightDescription: string = '';
+    fightCount: number = 1;
 
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this);
@@ -23,6 +24,7 @@ export class FightStore {
         // Only initialize if player doesn't exist yet
         if (!this.player) {
             this.player = new Player(1, name);
+            this.fightCount = 1; // Reset fight count when new player starts
         }
     }
 
@@ -50,10 +52,7 @@ export class FightStore {
                 this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Zombie.png"), EffectType.STAB, EffectType.SCHWERT);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
-
         }
-
-
     }
 
     setGameOver(value: boolean) {
@@ -67,6 +66,7 @@ export class FightStore {
         this.playerVictory = value;
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");
+            this.fightCount++; // Increment fight count after winning a fight
         }
     }
 
