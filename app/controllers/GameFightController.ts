@@ -42,7 +42,11 @@ export class GameFightController {
     outDamage(itemID: number): void {
         const { fightStore } = rootStore;
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
-        const damage = Math.max(0, fightStore.player.getCurrentAttack() * fightStore.player.inventory[itemID].getAmount() - fightStore.currentMonster.getCurrentDefense());
+        const effectiveness = 
+            itemID == fightStore.currentMonster.getWeakness()? 1.3: 
+            itemID == fightStore.currentMonster.getResistance()? 0.7:
+            1;
+        const damage = Math.max(0, Math.floor((fightStore.player.getCurrentAttack() * fightStore.player.inventory[itemID].getAmount() - fightStore.currentMonster.getCurrentDefense())*effectiveness));
         fightStore.setDescription(`${fightStore.player.getName()} greift an und verursacht ${damage} Schaden!`);
         fightStore.currentMonster.mathCurrentHealthPoints(-damage);
     }
