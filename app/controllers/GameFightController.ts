@@ -46,11 +46,11 @@ export class GameFightController {
             itemID == fightStore.currentMonster.getWeakness()? 1.3: 
             itemID == fightStore.currentMonster.getResistance()? 0.7:
             1;
-        const damage = Math.max(0, Math.floor((fightStore.player.getCurrentAttack() * fightStore.player.inventory[itemID].getAmount() - fightStore.currentMonster.getCurrentDefense())*effectiveness));
+        const damage = Math.max(0, Math.floor((fightStore.player.getCurrentAttack() + ( 5* fightStore.player.inventory[itemID].getAmount()) - fightStore.currentMonster.getCurrentDefense())*effectiveness));
         fightStore.setDescription(`${fightStore.player.getName()} greift an und verursacht ${damage} Schaden!`);
         fightStore.currentMonster.mathCurrentHealthPoints(-damage);
     }
-
+    
     checkHealth(): void {
         const { fightStore } = rootStore;
 
@@ -97,7 +97,7 @@ export class GameFightController {
                         break;
                     case 4:
                         fightStore.player?.mathCurrentAttack(5);
-                        fightStore.setDescription(`Du benutzt eine Zauberkugel. Dein Angriff steigt um 10!`);
+                        fightStore.setDescription(`Du benutzt eine Zauberkugel. Dein Angriff steigt um 5!`);
                         break;
                     case 5:
                         fightStore.player?.mathCurrentDefense(2);

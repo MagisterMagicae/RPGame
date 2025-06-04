@@ -32,5 +32,6 @@ export class Item {
 
     toggleIsVisible(): void { this.isVisible = !(this.isVisible); }
     mathAmount(a: number): void { 
-        this.amount = Math.min(this.amount, Math.max(0, this.amount + a)); }
+        this.amount += a;}
+        //this.amount = Math.max(this.amount, Math.max(0, this.amount + a)); }
 }

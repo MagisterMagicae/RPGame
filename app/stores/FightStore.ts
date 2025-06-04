@@ -11,9 +11,44 @@ export class FightStore {
     player: Player | null = null;
     fightDescription: string = '';
     fightCount: number = 1;
+    rewardText = 'Du erhältst: ';
+    rewardTypes = [0,0,0,0,0,0];
 
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this);
+    }
+
+    mathReward(){
+        this.rewardText = 'Du erhältst: ';
+        var rewardAmount = Math.floor(Math.random()*3+1); //Es können 1-3 Items erhalten werden, Anzahl zufällig
+            while(rewardAmount > 0){
+                this.rewardTypes[Math.floor(Math.random()*6)] += 1; //Erhöhung der Itemanzahl bzw. des Waffenlevels
+            rewardAmount -= 1;
+            }
+
+            for(var i = 0; i < 6; i++){
+                if(this.rewardTypes[i] != 0){
+                    console.log(i);
+                    if(i < 3){ //Waffen*level* werden erhalten
+                        console.log(this.player?.inventory[i].getName() + 'level wird gerade eingefügt');
+                        this.rewardText += this.player?.inventory[i].getName() + 'level, ';
+                    }
+                    else{
+                        console.log(this.player?.inventory[i].getName() + ' wird gerade eingefügt');
+
+                        this.rewardText += this.player?.inventory[i].getName() + ', ';
+                    }
+                }
+                this.player?.inventory[i].mathAmount(this.rewardTypes[i]);
+            }
+            this.rewardText = this.rewardText.slice(0, this.rewardText.length-2);
+            this.rewardText += '.';
+            console.log(this.rewardText);
+            for(var i = 0; i < 6; i++){
+                this.rewardTypes[i] = 0;
+            }
+            this.player?.addGold(30);
+            console.log(this.player?.getGold());
     }
 
     setDescription(text: string) {
@@ -33,9 +68,9 @@ export class FightStore {
 
         const rand = Math.floor(Math.random() * 3);
         var name: string;
-        const Hp = Math.floor(this.player?.getMaxHealthPoints() + 50 * (Math.random() * 2 - 1));
-        const Att = Math.floor(this.player?.getCurrentAttack() + 10 * (Math.random() * 2 - 1));
-        const Dev = Math.floor(this.player?.getCurrentDefense() + 10 * (Math.random() * 2 - 1));
+        const Hp = Math.floor(this.player?.getMaxHealthPoints() + 25 * (Math.random() * 2 - 1));
+        const Att = Math.floor(this.player?.getCurrentAttack() + 5 * (Math.random() * 2 - 1));
+        const Dev = Math.floor(this.player?.getCurrentDefense() + 5 * (Math.random() * 2 - 1));
         switch (rand) {
             case 0:
                 name = "Werwolf";
@@ -63,6 +98,7 @@ export class FightStore {
     }
 
     setPlayerVictory(value: boolean) {
+        this.mathReward();
         this.playerVictory = value;
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");

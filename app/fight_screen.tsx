@@ -52,6 +52,7 @@ const FightScreen = observer(() => {
                 <TouchableOpacity
                         style={ButtonStyles.imageButton}
                         onPress={()=>{controller.FightController(itemID);}}
+                                         
                     >
                         <Image
                             style={ImageStyles.icon}

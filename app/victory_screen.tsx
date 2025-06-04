@@ -21,7 +21,7 @@ type VictoryScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Vict
 const VictoryScreen = observer(() => {
     const navigation = useNavigation<VictoryScreenNavigationProp>();
     const { fightStore } = useRootStore();
-
+    
     const startNextRound = () => {
         if (fightStore.fightCount % 1 === 0) {
             fightStore.resetFight();
@@ -35,10 +35,11 @@ const VictoryScreen = observer(() => {
     };
 
     return (
+        
         <View style={MetaStyles.container}>
             <View style={TitleStyles.titleContainer}>
                 <Text style={TitleStyles.title}>Victory!!!</Text>
-                <Text style={TitleStyles.subtitle}>Awaiting next battle...</Text>
+                <Text style={TitleStyles.subtitle}>{fightStore.rewardText}</Text>
             </View>
             <View style={ButtonStyles.buttonContainer}>
                 <TouchableOpacity 
