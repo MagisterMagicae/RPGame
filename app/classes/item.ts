@@ -18,6 +18,8 @@ export class Item {
         protected cost: number = 0,
         
         protected sprite: number = 0,
+
+        protected itemDescription: String = 'description'
     ) { }
 
     getItemID(): number { return this.itemID; }
@@ -29,6 +31,7 @@ export class Item {
     getIsVisible(): boolean { return this.isVisible; }
     getCost(): number { return this.cost; }
     getSpriteDirectory(): number { return this.sprite; }
+    getItemDescription(): String { return this.itemDescription; }
 
     toggleIsVisible(): void { this.isVisible = !(this.isVisible); }
     mathAmount(a: number): void { 

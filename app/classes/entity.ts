@@ -26,7 +26,7 @@ export abstract class Entity {
         protected sprite: number = 0,
     ) {
 
-        this.inventory[0] = new Item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, 10, require("../../assets/images/Schwert.png")) //Bsp. Cost: 10
+        this.inventory[0] = new Item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, 10, require("../../assets/images/Schwert.png"),"mensareis") //Bsp. Cost: 10, bsp Beschreibung: "mensareis"
         this.inventory[1] = new Item(1, "Bogen", this.startInventory[1], EffectType.BOGEN, true, false, true, 10, require("../../assets/images/Bogen.png"))
         this.inventory[2] = new Item(2, "Stab", this.startInventory[2], EffectType.STAB, true, true, true, 10, require("../../assets/images/Stab.png"))
         this.inventory[3] = new Item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, 10, require("../../assets/images/Trank.png"))

@@ -155,13 +155,13 @@ export class GameFightController {
             } else {
                 switch (itemIndex) {
                     case 3:
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheitere beim Versuch zu Heilen`);
+                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheiterte beim Versuch zu Heilen`);
                         break;
                     case 4:
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheitere beim Versuch zu Attacke zu erhoehen`);
+                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheiterte beim Versuch Attacke zu erhöhen`);
                         break;
                     case 5:
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheitere beim Versuch zu Verteidigung zu erhoehen`);
+                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheiterte beim Versuch Verteidigung zu erhöhen`);
                         break;
                     default:
                 }

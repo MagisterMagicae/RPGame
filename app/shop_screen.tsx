@@ -2,10 +2,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
 import { ButtonStyles } from '../styles/button_style';
 import { ImageStyles } from '../styles/image_style';
 import { MetaStyles } from '../styles/meta_style';
+import { ModalStyles } from '../styles/modal_style';
 import { GameFightController } from './controllers/GameFightController';
 import { useRootStore } from './stores/RootStore';
 
@@ -22,6 +23,8 @@ const ShopScreen = observer(() => {
     const navigation = useNavigation<FightScreenNavigationProp>();
     const { fightStore } = useRootStore();
     const [controller] = React.useState(() => new GameFightController());
+     const [ItemDescriptionPopUp, setItemDescriptionPopUp] = React.useState(false);
+        const [selectedItemID, setSelectedItemID] = React.useState<number | null>(null);
 
  const handleStartFight = () => {
         fightStore.fightDescription = "Der nächste Kampf beginnt!";
@@ -41,14 +44,19 @@ const ShopScreen = observer(() => {
                 <TouchableOpacity
                     style={ButtonStyles.imageButton}
                     onPress={()=>{}} //hi krystyna hier in die swirly klammern kommt rein was die buttons machen
-                >
+                      onLongPress={()=>{
+                            setSelectedItemID(itemID);
+                            setItemDescriptionPopUp(true);
+                        }}
+                >   
                     <Image
                         style={ImageStyles.icon}
                         source={fightStore.player.inventory[itemID].getSpriteDirectory()}
                     />
                 </TouchableOpacity>
-                <Text style={{ marginTop: 5 }}>
-                    {fightStore.player.inventory[itemID].getCost()} Gold
+                <Text style={{ marginTop: 5, textAlign: 'center'}}>
+                    {fightStore.player.inventory[itemID].getCost()} Gold {"\n"}
+                    {fightStore.player.inventory[itemID].getAmount()} im Besitz
                 </Text>
             </View>
         )
@@ -57,7 +65,32 @@ const ShopScreen = observer(() => {
     return (
         <View style={[MetaStyles.container, { justifyContent: 'flex-start', paddingTop: 20 }]}>
             
-  
+            <Modal //item beschreibung pop up
+                transparent={true}
+                visible={ItemDescriptionPopUp}
+                onRequestClose={() => setItemDescriptionPopUp(false)}
+            >
+                <View style={ModalStyles.modalOverlay}>
+                    <View style={ModalStyles.modalContent}>
+                        <Text style={ModalStyles.modalTitle}>
+                            {selectedItemID !== null && fightStore.player ? 
+                                fightStore.player.inventory[selectedItemID].getName() : 
+                                'Item'}
+                        </Text>
+                        <Text style={ModalStyles.modalText}>
+                            {selectedItemID !== null && fightStore.player ?
+                                fightStore.player.inventory[selectedItemID].getItemDescription() :
+                                'description'}
+                            </Text>
+                        <TouchableOpacity 
+                            style={ModalStyles.modalButton}
+                            onPress={() => setItemDescriptionPopUp(false)}
+                        >
+                            <Text style={ModalStyles.modalButtonText}>OK</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
 
             <View style={{ alignItems: 'center', marginVertical: 10 }}>
                 <Image
