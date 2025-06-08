@@ -23,10 +23,10 @@ const ShopScreen = observer(() => {
     const navigation = useNavigation<FightScreenNavigationProp>();
     const { fightStore } = useRootStore();
     const [controller] = React.useState(() => new GameFightController());
-     const [ItemDescriptionPopUp, setItemDescriptionPopUp] = React.useState(false);
-        const [selectedItemID, setSelectedItemID] = React.useState<number | null>(null);
+    const [ItemDescriptionPopUp, setItemDescriptionPopUp] = React.useState(false);
+    const [selectedItemID, setSelectedItemID] = React.useState<number | null>(null);
 
- const handleStartFight = () => {
+    const handleStartFight = () => {
         fightStore.fightDescription = "Der nächste Kampf beginnt!";
         navigation.navigate('FightScreen');
     };
@@ -35,26 +35,37 @@ const ShopScreen = observer(() => {
         fightStore.fightDescription = "Willkommen im Shop!";
     }, []);
 
-    const button = (itemID:number) => {
+    const button = (itemID: number) => {
 
         if (!fightStore.player) return; //Sicherheitscheck
 
-        return(
+        return (
             <View style={{ alignItems: 'center' }}>
                 <TouchableOpacity
                     style={ButtonStyles.imageButton}
-                    onPress={()=>{}} //hi krystyna hier in die swirly klammern kommt rein was die buttons machen
-                      onLongPress={()=>{
-                            setSelectedItemID(itemID);
-                            setItemDescriptionPopUp(true);
-                        }}
-                >   
+                    onPress={() => {
+                        const item = fightStore.player!.inventory[itemID];
+                        const cost = item.getCost();
+
+                        if (fightStore.player!.getGold() >= cost) {
+                            fightStore.player!.spendGold(cost);
+                            item.mathAmount(1);
+                            fightStore.fightDescription = `Du hast ${item.getName()} gekauft!`;
+                        } else {
+                            fightStore.fightDescription = "Nicht genug Gold!";
+                        }
+                    }}
+                    onLongPress={() => {
+                        setSelectedItemID(itemID);
+                        setItemDescriptionPopUp(true);
+                    }}
+                >
                     <Image
                         style={ImageStyles.icon}
                         source={fightStore.player.inventory[itemID].getSpriteDirectory()}
                     />
                 </TouchableOpacity>
-                <Text style={{ marginTop: 5, textAlign: 'center'}}>
+                <Text style={{ marginTop: 5, textAlign: 'center' }}>
                     {fightStore.player.inventory[itemID].getCost()} Gold {"\n"}
                     {fightStore.player.inventory[itemID].getAmount()} im Besitz
                 </Text>
@@ -64,7 +75,7 @@ const ShopScreen = observer(() => {
 
     return (
         <View style={[MetaStyles.container, { justifyContent: 'flex-start', paddingTop: 20 }]}>
-            
+
             <Modal //item beschreibung pop up
                 transparent={true}
                 visible={ItemDescriptionPopUp}
@@ -73,16 +84,16 @@ const ShopScreen = observer(() => {
                 <View style={ModalStyles.modalOverlay}>
                     <View style={ModalStyles.modalContent}>
                         <Text style={ModalStyles.modalTitle}>
-                            {selectedItemID !== null && fightStore.player ? 
-                                fightStore.player.inventory[selectedItemID].getName() : 
+                            {selectedItemID !== null && fightStore.player ?
+                                fightStore.player.inventory[selectedItemID].getName() :
                                 'Item'}
                         </Text>
                         <Text style={ModalStyles.modalText}>
                             {selectedItemID !== null && fightStore.player ?
                                 fightStore.player.inventory[selectedItemID].getItemDescription() :
                                 'description'}
-                            </Text>
-                        <TouchableOpacity 
+                        </Text>
+                        <TouchableOpacity
                             style={ModalStyles.modalButton}
                             onPress={() => setItemDescriptionPopUp(false)}
                         >
@@ -102,6 +113,10 @@ const ShopScreen = observer(() => {
                     HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
                 </Text>
 
+                <Text style={{ marginVertical: 5 }}>
+                    Gold: {fightStore.player ? fightStore.player.getGold() : 0}
+                </Text>
+
                 <Text style={{ marginBottom: 0 }}>{fightStore.fightDescription || 'Shop'}</Text>
             </View>
 
@@ -111,10 +126,10 @@ const ShopScreen = observer(() => {
                     {button(0)}
                     {button(1)}
                     {button(2)}
-                    
+
                 </View>
                 <View style={ButtonStyles.multiButton}>
-                    
+
                     {button(3)}
                     {button(4)}
                     {button(5)}
@@ -122,8 +137,8 @@ const ShopScreen = observer(() => {
                 </View>
             </View>
             <View style={ButtonStyles.shopContainer}>
-                <TouchableOpacity 
-                    style={ButtonStyles.button} 
+                <TouchableOpacity
+                    style={ButtonStyles.button}
                     onPress={handleStartFight}>
                     <Text style={ButtonStyles.buttonText}>Nächster Kampf</Text>
                 </TouchableOpacity>
