@@ -32,7 +32,6 @@ export abstract class Entity {
         this.inventory[3] = new Item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, 10, require("../../assets/images/Trank.png"))
         this.inventory[4] = new Item(4, "Kugel", this.startInventory[4], EffectType.ATKBOOST, false, true, true, 10, require("../../assets/images/Kugel.png"))
         this.inventory[5] = new Item(5, "Umhang", this.startInventory[5], EffectType.DEFBOOST, false, true, true, 10, require("../../assets/images/Umhang.png"))
-
     }
 
     getName(): string { return this.name; }

@@ -1,9 +1,6 @@
 import { EffectType } from "./effecttype";
 
 export class Item {
-
-    //The constructor automatically creates and assigns the values to class properties
-
     constructor(
         protected itemID: number = 0,
         protected name: String = "itemName",

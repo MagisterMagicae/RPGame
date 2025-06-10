@@ -78,13 +78,13 @@ export class FightStore {
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 1:
-                name = "Schleim";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Slime.png"), EffectType.SCHWERT, EffectType.BOGEN);
+                name = "Greif";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Greif.png"), EffectType.SCHWERT, EffectType.BOGEN);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 2:
-                name = "Zombie";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Zombie.png"), EffectType.STAB, EffectType.SCHWERT);
+                name = "Troll";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Troll.png"), EffectType.STAB, EffectType.SCHWERT);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
         }

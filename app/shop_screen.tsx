@@ -25,6 +25,7 @@ const ShopScreen = observer(() => {
     const [controller] = React.useState(() => new GameFightController());
     const [ItemDescriptionPopUp, setItemDescriptionPopUp] = React.useState(false);
     const [selectedItemID, setSelectedItemID] = React.useState<number | null>(null);
+    const [goldUpdate, setGoldUpdate] = React.useState(0);
 
     const handleStartFight = () => {
         fightStore.fightDescription = "Der nächste Kampf beginnt!";
@@ -51,6 +52,7 @@ const ShopScreen = observer(() => {
                             fightStore.player!.spendGold(cost);
                             item.mathAmount(1);
                             fightStore.fightDescription = `Du hast ${item.getName()} gekauft!`;
+                            setGoldUpdate(prev => prev + 1); // Force re-render
                         } else {
                             fightStore.fightDescription = "Nicht genug Gold!";
                         }
@@ -67,7 +69,10 @@ const ShopScreen = observer(() => {
                 </TouchableOpacity>
                 <Text style={{ marginTop: 5, textAlign: 'center' }}>
                     {fightStore.player.inventory[itemID].getCost()} Gold {"\n"}
-                    {fightStore.player.inventory[itemID].getAmount()} im Besitz
+                    {fightStore.player.inventory[itemID].getIsWeapon() ? 
+                        `Level ${fightStore.player.inventory[itemID].getAmount()}` :
+                        `${fightStore.player.inventory[itemID].getAmount()} im Besitz`
+                    }
                 </Text>
             </View>
         )
