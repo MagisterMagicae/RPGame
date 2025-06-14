@@ -54,7 +54,9 @@ const FightScreen = observer(() => {
             return(
                 <TouchableOpacity
                         style={ButtonStyles.imageButton}
-                        onPress={()=>{controller.FightController(itemID);}}
+                        onPress={()=>{
+                            if(!fightStore.monsterTurn){
+                            controller.FightController(itemID);}}}
                         onLongPress={()=>{
                             setSelectedItemID(itemID);
                             setItemDescriptionPopUp(true);

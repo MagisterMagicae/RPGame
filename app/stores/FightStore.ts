@@ -13,6 +13,7 @@ export class FightStore {
     fightCount: number = 1;
     rewardText = 'Du erhältst: ';
     rewardTypes = [0,0,0,0,0,0];
+    monsterTurn = false;
 
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this);
@@ -103,6 +104,7 @@ export class FightStore {
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");
             this.fightCount++; // Increment fight count after winning a fight
+            this.player?.mathMaxHealthPoints(10);
         }
     }
 

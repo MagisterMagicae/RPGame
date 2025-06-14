@@ -16,12 +16,16 @@ export class GameFightController {
 
         // If the fight isn't over after player's turn, do enemy turn
         if (!fightStore.gameOver && !fightStore.playerVictory) {
+            fightStore.monsterTurn = true;
             setTimeout(() => {
                 this.enemyTurn();
                 if (fightStore.player) {
                     this.checkHealth();
                 }
-            }, 1000); // Add a 1 second delay for better UX
+                setTimeout(() => {
+                    fightStore.monsterTurn = false;
+                }, 1000);
+            }, 1000); // 2 Verzögerungen sodass genug Zeit ist um Spieler & Monster Aktion zu lesen
         }
     }
 
@@ -33,10 +37,12 @@ export class GameFightController {
 
     inDamage(itemID: number): void {
         const { fightStore } = rootStore;
+        setTimeout(() => {
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
         const damage = Math.max(0, fightStore.currentMonster.getCurrentAttack() * fightStore.currentMonster.inventory[itemID].getAmount() - fightStore.player.getCurrentDefense());
-        fightStore.setDescription(`${fightStore.currentMonster.getName()} greift an und verursacht ${damage} Schaden!`);
-        fightStore.player.mathCurrentHealthPoints(-damage);
+        fightStore.setDescription(`${fightStore.currentMonster?.getName()} greift an und verursacht ${damage} Schaden!`);
+        fightStore.player?.mathCurrentHealthPoints(-damage);
+        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird	
     }
 
     outDamage(itemID: number): void {
@@ -139,29 +145,41 @@ export class GameFightController {
             if (fightStore.currentMonster.inventory[itemIndex].getAmount() > 0) {
                 switch (itemIndex) {
                     case 3:
-                        fightStore.currentMonster?.mathCurrentHealthPoints(20);
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} regeneriert 20 HP!`);
+                        setTimeout(() => {
+                            fightStore.currentMonster?.mathCurrentHealthPoints(20);
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} regeneriert 20 HP!`);
+                        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     case 4:
-                        fightStore.currentMonster?.mathCurrentAttack(5);
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()}s Angriff steigt um 10!`);
+                        setTimeout(() => {
+                            fightStore.currentMonster?.mathCurrentAttack(5);
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()}s Angriff steigt um 10!`);
+                        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     case 5:
-                        fightStore.currentMonster?.mathCurrentDefense(2);
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()}s Verteidigung steigt um 2!`);
+                        setTimeout(() => {
+                            fightStore.currentMonster?.mathCurrentDefense(2);
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()}s Verteidigung steigt um 2!`);
+                        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     default:
                 }
             } else {
                 switch (itemIndex) {
                     case 3:
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheiterte beim Versuch zu Heilen`);
+                        setTimeout(() => {
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch zu Heilen`);
+                        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     case 4:
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheiterte beim Versuch Attacke zu erhöhen`);
+                        setTimeout(() => {
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch Attacke zu erhöhen`);
+                        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     case 5:
-                        fightStore.setDescription(`${fightStore.currentMonster.getName()} scheiterte beim Versuch Verteidigung zu erhöhen`);
+                        setTimeout(() => {
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch Verteidigung zu erhöhen`);
+                        }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     default:
                 }
