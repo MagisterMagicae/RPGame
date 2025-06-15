@@ -4,6 +4,8 @@ import { Entity } from "./entity";
 export class Monster extends Entity {
 
   //The constructor automatically creates and assigns the values to class properties
+  
+  fightValue: Array<number> = [];
 
   constructor(entityID: number = 2,
     name: string = "Monster",
@@ -19,6 +21,8 @@ export class Monster extends Entity {
 
     startInventory: Array<number> = [2, 1, 0, 99, 0, 99],
     sprite:number = require("../../assets/images/Werwolf.png"),
+
+    fightValue: Array<number> = [1,1,1,1,1,1],
 
     protected resistance: number = EffectType.HEILUNG,
     protected weakness: number = EffectType.HEILUNG
@@ -37,8 +41,11 @@ export class Monster extends Entity {
       maxDefense,
       startInventory,
       sprite);
+      
+    this.fightValue = fightValue;
   }
 
+  getFightValue(a:number):number {return this.fightValue[a]}
   getResistance(): number { return this.resistance; }
   getWeakness(): number { return this.weakness; }
 }

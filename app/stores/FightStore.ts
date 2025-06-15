@@ -67,7 +67,7 @@ export class FightStore {
     setCurrentMonster() {
         if (!this.player) return; //Sicherheitscheck
 
-        const rand = Math.floor(Math.random() * 3);
+        const rand = Math.floor(Math.random() * 6);
         var name: string;
         const Hp = Math.floor(this.player?.getMaxHealthPoints() + 25 * (Math.random() * 2 - 1));
         const Att = Math.floor(this.player?.getCurrentAttack() + 5 * (Math.random() * 2 - 1));
@@ -75,17 +75,32 @@ export class FightStore {
         switch (rand) {
             case 0:
                 name = "Werwolf";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Werwolf.png"), EffectType.BOGEN, EffectType.STAB);
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Werwolf.png"),[1,4,1,0,0,0], EffectType.BOGEN, EffectType.STAB);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 1:
                 name = "Greif";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Greif.png"), EffectType.SCHWERT, EffectType.BOGEN);
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Greif.png"), [1,4,1,0,0,0], EffectType.SCHWERT, EffectType.BOGEN);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 2:
                 name = "Troll";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Troll.png"), EffectType.STAB, EffectType.SCHWERT);
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 0, 2], require("../../assets/images/Troll.png"), [1,4,1,0,0,0], EffectType.STAB, EffectType.SCHWERT);
+                this.setDescription(`Ein wilder ${name} erscheint!`);
+                break;
+            case 3:
+                name = "Miniboss 1";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Troll.png"), [1,3,1,0,1,1], EffectType.STAB, EffectType.SCHWERT);
+                this.setDescription(`Ein wilder ${name} erscheint!`);
+                break;
+            case 4:
+                name = "Miniboss 2";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Troll.png"), [1,3,1,1,0,0], EffectType.STAB, EffectType.SCHWERT);
+                this.setDescription(`Ein wilder ${name} erscheint!`);
+                break;
+            case 5:
+                name = "Boss";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 10, 10, 10], require("../../assets/images/Troll.png"), [1,1,1,1,1,1], EffectType.STAB, EffectType.SCHWERT);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
         }

@@ -31,8 +31,16 @@ export class GameFightController {
 
     enemyTurn(): void {
         const { fightStore } = rootStore;
-        const itemID = Math.floor(Math.random() * 6);
-        this.enemyItem(itemID);
+        let moveOptions:Array<number> = [];
+        if (fightStore.currentMonster?.fightValue.length == undefined) return;
+        for(let i = 0; i < fightStore.currentMonster?.fightValue.length; i++){
+            for(let j = 0; j < fightStore.currentMonster.getFightValue(i); j++){
+                moveOptions[moveOptions.length] = i;
+            }
+
+        }
+        const choice = Math.floor(Math.random() * (moveOptions.length));
+        this.enemyItem(moveOptions[choice]);
     }
 
     inDamage(itemID: number): void {
