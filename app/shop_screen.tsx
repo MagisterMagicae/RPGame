@@ -69,7 +69,7 @@ const ShopScreen = observer(() => {
                 </TouchableOpacity>
                 <Text style={{ marginTop: 5, textAlign: 'center' }}>
                     {fightStore.player.inventory[itemID].getCost()} Gold {"\n"}
-                    {fightStore.player.inventory[itemID].getIsWeapon() ? 
+                    {fightStore.player.inventory[itemID].getIsWeapon() ?
                         `Level ${fightStore.player.inventory[itemID].getAmount()}` :
                         `${fightStore.player.inventory[itemID].getAmount()} im Besitz`
                     }
@@ -114,9 +114,18 @@ const ShopScreen = observer(() => {
                     source={require('../assets/images/shop_temporary.png')}
                 />
 
-                <Text style={{ marginVertical: 10 }}>
-                    HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
+
+                    <Image
+                        source={require('../assets/images/Herz_pink.png')}
+                        style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
+                    />
+                    <Text>
+                        HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
+                    </Text>
+                </View>
+
+
 
                 <Text style={{ marginVertical: 5 }}>
                     Gold: {fightStore.player ? fightStore.player.getGold() : 0}

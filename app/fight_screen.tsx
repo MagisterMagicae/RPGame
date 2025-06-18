@@ -37,7 +37,7 @@ const FightScreen = observer(() => {
     }, [fightStore.gameOver]);
 
     // Wenn der Spieler gewinnt, dann wird man auf den FightScreen zurückgeleitet
-     useEffect(() => {
+    useEffect(() => {
         if (fightStore.playerVictory) {
             // kleiner Delay
             setTimeout(() => {
@@ -46,45 +46,47 @@ const FightScreen = observer(() => {
         }
     }, [fightStore.playerVictory]);
 
-    const button = (itemID:number) => {
+    const button = (itemID: number) => {
 
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
 
-        if (fightStore.player?.inventory[itemID].getAmount() > 0){
-            return(
+        if (fightStore.player?.inventory[itemID].getAmount() > 0) {
+            return (
                 <TouchableOpacity
-                        style={ButtonStyles.imageButton}
-                        onPress={()=>{
-                            if(!fightStore.monsterTurn){
-                            controller.FightController(itemID);}}}
-                        onLongPress={()=>{
-                            setSelectedItemID(itemID);
-                            setItemDescriptionPopUp(true);
-                        }}
-                    > 
-                        <Text>{fightStore.player?.inventory[itemID].getAmount()}</Text>
+                    style={ButtonStyles.imageButton}
+                    onPress={() => {
+                        if (!fightStore.monsterTurn) {
+                            controller.FightController(itemID);
+                        }
+                    }}
+                    onLongPress={() => {
+                        setSelectedItemID(itemID);
+                        setItemDescriptionPopUp(true);
+                    }}
+                >
+                    <Text>{fightStore.player?.inventory[itemID].getAmount()}</Text>
 
-                        <Image
-                            style={ImageStyles.icon}
-                            source={fightStore.player.inventory[itemID].getSpriteDirectory()}
-                        />
-                    </TouchableOpacity>
+                    <Image
+                        style={ImageStyles.icon}
+                        source={fightStore.player.inventory[itemID].getSpriteDirectory()}
+                    />
+                </TouchableOpacity>
             )
         } else {
             return <TouchableOpacity
-                        style={ButtonStyles.imageButton}
-                    >
-                        <Image
-                            style={ImageStyles.icon}
-                            source={require('../assets/images/empty.png')}
-                        />
-                    </TouchableOpacity>
+                style={ButtonStyles.imageButton}
+            >
+                <Image
+                    style={ImageStyles.icon}
+                    source={require('../assets/images/empty.png')}
+                />
+            </TouchableOpacity>
         }
     }
 
     return (
         <View style={MetaStyles.container}>
-         <Modal //item beschreibung pop up
+            <Modal //item beschreibung pop up
                 transparent={true}
                 visible={ItemDescriptionPopUp}
                 onRequestClose={() => setItemDescriptionPopUp(false)}
@@ -92,16 +94,16 @@ const FightScreen = observer(() => {
                 <View style={ModalStyles.modalOverlay}>
                     <View style={ModalStyles.modalContent}>
                         <Text style={ModalStyles.modalTitle}>
-                            {selectedItemID !== null && fightStore.player ? 
-                                fightStore.player.inventory[selectedItemID].getName() : 
+                            {selectedItemID !== null && fightStore.player ?
+                                fightStore.player.inventory[selectedItemID].getName() :
                                 'Item'}
                         </Text>
                         <Text style={ModalStyles.modalText}>
                             {selectedItemID !== null && fightStore.player ?
                                 fightStore.player.inventory[selectedItemID].getItemDescription() :
                                 'description'}
-                            </Text>
-                        <TouchableOpacity 
+                        </Text>
+                        <TouchableOpacity
                             style={ModalStyles.modalButton}
                             onPress={() => setItemDescriptionPopUp(false)}
                         >
@@ -110,44 +112,61 @@ const FightScreen = observer(() => {
                     </View>
                 </View>
             </Modal>
-        <Text style={{ marginBottom: 10 }}>
-            {fightStore.fightCount}
-        </Text>
-        
-        <Text style={{ marginBottom: 10 }}>
-            HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
-        </Text>
+            <Text style={{ marginBottom: 10 }}>
+                {fightStore.fightCount}
+            </Text>
 
-        <Image
-            style={ImageStyles.monsterImage}
-            source={fightStore.currentMonster?.getSpriteDirectory()}
-        />
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
 
-        <Text style={{ marginBottom: 10 }}>
-            HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
-        </Text>
-
-        <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
-
-        <View style={ButtonStyles.imageButtonContainer}>
-            <View style={ButtonStyles.multiButton}>
-
-                {button(0)}
-                {button(1)}
-                {button(2)}
-                
+                <Image
+                    source={require('../assets/images/Herz_gruen.png')}
+                    style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
+                />
+                <Text>
+                    HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
+                </Text>
             </View>
-            <View style={ButtonStyles.multiButton}>
-                
-                {button(3)}
-                {button(4)}
-                {button(5)}
 
+            <Image
+                style={ImageStyles.monsterImage}
+                source={fightStore.currentMonster?.getSpriteDirectory()}
+            />
+             <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop:10 }}>
+                
+                <Image
+                    source={require('../assets/images/Herz_pink.png')}
+                    style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
+                />
+                <Text>
+                    HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
+                </Text>
             </View>
+
+
+
+           
+
+            <View style={ButtonStyles.imageButtonContainer}>
+                <View style={ButtonStyles.multiButton}>
+
+                    {button(0)}
+                    {button(1)}
+                    {button(2)}
+
+                </View>
+                <View style={ButtonStyles.multiButton}>
+
+                    {button(3)}
+                    {button(4)}
+                    {button(5)}
+
+                </View>
+            </View>
+
         </View>
-
-    </View>
-);
+    );
 });
 
 export default FightScreen;

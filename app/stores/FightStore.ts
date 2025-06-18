@@ -100,18 +100,18 @@ export class FightStore {
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 3:
-                name = "Miniboss 1";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Troll.png"), [1, 3, 1, 0, 1, 1], EffectType.STAB, EffectType.SCHWERT);
+                name = "Miniboss Golem";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Golem.png"), [1, 3, 1, 0, 1, 1], EffectType.STAB, EffectType.SCHWERT);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 4:
-                name = "Miniboss 2";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Troll.png"), [1, 3, 1, 1, 0, 0], EffectType.STAB, EffectType.SCHWERT);
+                name = "Miniboss Drache";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Drache.png"), [1, 3, 1, 1, 0, 0], EffectType.STAB, EffectType.SCHWERT);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 5:
-                name = "Boss";
-                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 10, 10, 10], require("../../assets/images/Troll.png"), [1, 1, 1, 1, 1, 1], EffectType.STAB, EffectType.SCHWERT);
+                name = "Boss Hoellenhund";
+                this.currentMonster = new Monster(2, name, Hp, Hp, Att, 999, Dev, 999, [2, 1, 0, 10, 10, 10], require("../../assets/images/Hoellenhund.png"), [1, 1, 1, 1, 1, 1], EffectType.STAB, EffectType.SCHWERT);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
         }
