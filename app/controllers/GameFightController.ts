@@ -47,7 +47,7 @@ export class GameFightController {
         const { fightStore } = rootStore;
         setTimeout(() => {
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
-        const damage = Math.max(0, fightStore.currentMonster.getCurrentAttack() * fightStore.currentMonster.inventory[itemID].getAmount() - fightStore.player.getCurrentDefense());
+        const damage = Math.max(0, Math.floor((fightStore.currentMonster.getCurrentAttack() + ( 5* fightStore.currentMonster.inventory[itemID].getAmount()) - fightStore.player.getCurrentDefense())));
         fightStore.setDescription(`${fightStore.currentMonster?.getName()} greift an und verursacht ${damage} Schaden!`);
         fightStore.player?.mathCurrentHealthPoints(-damage);
         }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird	
