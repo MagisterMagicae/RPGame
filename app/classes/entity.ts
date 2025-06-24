@@ -45,8 +45,9 @@ export abstract class Entity {
 
     //math Methoden:
     //Erhöhe oder verringere aktuellen Wert um amount. Der Wert darf außerdem nicht unter 0 fallen und auch nicht über dem Maximum liegen
-    mathCurrentHealthPoints(amount: number): void {
+    mathCurrentHealthPoints(amount: number, afterChange?: () => void): void {
         this.currentHealthPoints = Math.min(this.maxHealthPoints, Math.max(0, this.currentHealthPoints + amount));
+        if (afterChange) afterChange();
     }
 
     mathCurrentAttack(amount: number): void {

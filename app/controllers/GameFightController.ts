@@ -49,7 +49,7 @@ export class GameFightController {
         if (!fightStore.player || !fightStore.currentMonster) return; //Sicherheitscheck
         const damage = Math.max(0, Math.floor((fightStore.currentMonster.getCurrentAttack() + ( 5* fightStore.currentMonster.inventory[itemID].getAmount()) - fightStore.player.getCurrentDefense())));
         fightStore.setDescription(`${fightStore.currentMonster?.getName()} greift an und verursacht ${damage} Schaden!`);
-        fightStore.player?.mathCurrentHealthPoints(-damage);
+        fightStore.player?.mathCurrentHealthPoints(-damage, () => this.checkHealth());
         }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird	
     }
 
@@ -62,7 +62,7 @@ export class GameFightController {
             1;
         const damage = Math.max(0, Math.floor((fightStore.player.getCurrentAttack() + ( 5* fightStore.player.inventory[itemID].getAmount()) - fightStore.currentMonster.getCurrentDefense())*effectiveness));
         fightStore.setDescription(`${fightStore.player.getName()} greift an und verursacht ${damage} Schaden!`);
-        fightStore.currentMonster.mathCurrentHealthPoints(-damage);
+        fightStore.currentMonster.mathCurrentHealthPoints(-damage, () => this.checkHealth());
     }
     
     checkHealth(): void {
@@ -106,7 +106,7 @@ export class GameFightController {
             if (fightStore.player.inventory[itemIndex].getAmount() > 0) {
                 switch (itemIndex) {
                     case 3:
-                        fightStore.player?.mathCurrentHealthPoints(20);
+                        fightStore.player?.mathCurrentHealthPoints(20, () => this.checkHealth());
                         fightStore.setDescription(`Du benutzt einen Heiltrank. Du regenerierst 20 HP!`);
                         break;
                     case 4:
@@ -154,7 +154,7 @@ export class GameFightController {
                 switch (itemIndex) {
                     case 3:
                         setTimeout(() => {
-                            fightStore.currentMonster?.mathCurrentHealthPoints(20);
+                            fightStore.currentMonster?.mathCurrentHealthPoints(20, () => this.checkHealth());
                             fightStore.setDescription(`${fightStore.currentMonster?.getName()} regeneriert 20 HP!`);
                         }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;

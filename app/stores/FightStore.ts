@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, reaction } from 'mobx';
 import EffectType from '../classes/effecttype';
 import { Monster } from '../classes/monster';
 import { Player } from '../classes/player';
@@ -17,6 +17,15 @@ export class FightStore {
 
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this);
+        // MobX reaction: End game instantly if player health drops to 0 or below
+        reaction(
+            () => this.player?.getCurrentHealthPoints(),
+            (hp) => {
+                if (typeof hp === 'number' && hp <= 0 && !this.gameOver) {
+                    this.setGameOver(true);
+                }
+            }
+        );
     }
 
     mathReward() {
