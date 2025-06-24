@@ -8,13 +8,14 @@ export const TitleStyles = StyleSheet.create({
         marginBottom: 40,
     },
     title: {
-        fontSize: 48,
+        fontSize: 100,
         fontWeight: "bold",
-        color: "#333",
+        color: "#fff",
+        marginTop: 120,
     },
     subtitle: {
-        fontSize: 24,
-        color: "#666",
+        fontSize: 30,
+        color: "#fff",
         marginTop: 8,
     },
 

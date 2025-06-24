@@ -112,7 +112,7 @@ const ShopScreen = observer(() => {
             <View style={{ alignItems: 'center', marginVertical: 10 }}>
                 <Image
                     style={ImageStyles.shopImage}
-                    source={require('../assets/images/shop_temporary.png')}
+                    source={require('../assets/images/shop.png')}
                 />
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
