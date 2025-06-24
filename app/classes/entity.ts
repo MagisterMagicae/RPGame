@@ -26,12 +26,18 @@ export abstract class Entity {
         protected sprite: number = 0,
     ) {
 
-        this.inventory[0] = new Item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, 10, require("../../assets/images/Schwert.png"),"mensareis") //Bsp. Cost: 10, bsp Beschreibung: "mensareis"
-        this.inventory[1] = new Item(1, "Bogen", this.startInventory[1], EffectType.BOGEN, true, false, true, 10, require("../../assets/images/Bogen.png"))
-        this.inventory[2] = new Item(2, "Stab", this.startInventory[2], EffectType.STAB, true, false, true, 10, require("../../assets/images/Stab.png"))
-        this.inventory[3] = new Item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, 10, require("../../assets/images/Trank.png"))
-        this.inventory[4] = new Item(4, "Kugel", this.startInventory[4], EffectType.ATKBOOST, false, true, true, 10, require("../../assets/images/Kugel.png"))
-        this.inventory[5] = new Item(5, "Umhang", this.startInventory[5], EffectType.DEFBOOST, false, true, true, 10, require("../../assets/images/Umhang.png"))
+        this.inventory[0] = new Item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, 10, require("../../assets/images/Schwert.png"),
+        "   Bereits etwas verbogen. Trotzdem noch wirksam gegen selbst gut ausgestattete Gegner.\n\nVerschiedene Waffen sind unterschiedlich effektiv, je nachdem, wer dir entgegensteht!")
+        this.inventory[1] = new Item(1, "Bogen", this.startInventory[1], EffectType.BOGEN, true, false, true, 10, require("../../assets/images/Bogen.png"),
+            "Aus einem robustem Holz. Eignet sich gut, um fliegende Ziele zu treffen\n\nVerschiedene Waffen sind unterschiedlich effektiv, je nachdem, wer dir entgegensteht!")
+        this.inventory[2] = new Item(2, "Stab", this.startInventory[2], EffectType.STAB, true, false, true, 10, require("../../assets/images/Stab.png"),
+            "Ein alter Zauberstab, der feurige Lichtkugeln entsendet. Mit ihm lassen sich Kreaturen der Nacht verschrecken.\n\nVerschiedene Waffen sind unterschiedlich effektiv, je nachdem, wer dir entgegensteht!")
+        this.inventory[3] = new Item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, 10, require("../../assets/images/Trank.png"),
+            "Verbessert deine Lebenspunkte!\nSchmeckt pink.")
+        this.inventory[4] = new Item(4, "Kugel", this.startInventory[4], EffectType.ATKBOOST, false, true, true, 10, require("../../assets/images/Kugel.png"),
+            "Verbessert deinen Angriff!\nDiese Zauberkugel verschafft dir einen Blick in die Zukunft. Mit ihr kannst du deinen Gegnern einen Schritt voraus sein.")
+        this.inventory[5] = new Item(5, "Umhang", this.startInventory[5], EffectType.DEFBOOST, false, true, true, 10, require("../../assets/images/Umhang.png"),
+            "Verbessert deine Verteidigung!\nEr mag aussehen, als sei er aus normalen Stoffen, jedoch verbirgt sich zwischen den Falten ein magisches Material.")
     }
 
     getName(): string { return this.name; }

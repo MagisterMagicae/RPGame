@@ -33,7 +33,7 @@ const ShopScreen = observer(() => {
         });
 
     const handleStartFight = () => {
-        fightStore.fightDescription = "Der nächste Kampf beginnt!";
+        fightStore.fightDescription = "Ein weiterer Kampf beginnt!";
         navigation.navigate('FightScreen');
     };
 
@@ -159,7 +159,7 @@ const ShopScreen = observer(() => {
                 <TouchableOpacity
                     style={ButtonStyles.button}
                     onPress={handleStartFight}>
-                    <Text style={ButtonStyles.buttonText}>Nächster Kampf</Text>
+                    <Text style={ButtonStyles.buttonText}>Weiter</Text>
                 </TouchableOpacity>
             </View>
         </View>

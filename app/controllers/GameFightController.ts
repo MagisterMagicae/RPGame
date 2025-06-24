@@ -181,12 +181,12 @@ export class GameFightController {
                         break;
                     case 4:
                         setTimeout(() => {
-                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch Attacke zu erhöhen`);
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch Attacke zu verbessern`);
                         }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     case 5:
                         setTimeout(() => {
-                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch Verteidigung zu erhöhen`);
+                            fightStore.setDescription(`${fightStore.currentMonster?.getName()} scheiterte beim Versuch Verteidigung zu verbessern`);
                         }, 1000); //1 Sekunde Delay damit vorheriger Zug länger gezeigt wird
                         break;
                     default:

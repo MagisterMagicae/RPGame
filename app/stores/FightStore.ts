@@ -31,7 +31,7 @@ export class FightStore {
     }
 
     mathReward() {
-        this.rewardText = 'Du erhältst: \n';
+        this.rewardText = 'Du bekommst: \n';
         var rewardAmount = Math.floor(Math.random() * 3 + 1); //Es können 1-3 Items erhalten werden, Anzahl zufällig
         while (rewardAmount > 0) {
             this.rewardTypes[Math.floor(Math.random() * 6)] += 1; //Erhöhung der Itemanzahl bzw. des Waffenlevels
@@ -120,7 +120,7 @@ export class FightStore {
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 5:
-                name = "Boss Hoellenhund";
+                name = "Boss Feuerhund";
                 this.currentMonster = new Monster(2, name, Math.floor(Hp*1.2),Math.floor(Hp*1.2), Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 10, 10], require("../../assets/images/Hoellenhund.png"), [1, 1, 1, 1, 1, 1], EffectType.HEILUNG, EffectType.HEILUNG);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;

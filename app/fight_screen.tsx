@@ -155,7 +155,7 @@ const FightScreen = observer(() => {
             <ImageBackground
                 style={ImageStyles.partialBackground}
                 source={
-                    fightStore.currentMonster?.getName() === "Boss Hoellenhund"
+                    fightStore.currentMonster?.getName() === "Boss Feuerhund"
                         ? require('../assets/images/bg_red_v02.png')
                         : require('../assets/images/bg_blue_v02.png')
                 }

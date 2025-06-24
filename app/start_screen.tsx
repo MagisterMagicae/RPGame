@@ -157,7 +157,7 @@ const StartScreen = observer(({ navigation }: Props) => {
                         style={ButtonStyles.button}
                         onPress={deleteData}
                     >
-                        <Text style={ButtonStyles.buttonText}>Spielstand löschen</Text>
+                        <Text style={ButtonStyles.buttonText}>Spielstand leeren</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
