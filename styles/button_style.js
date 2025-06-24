@@ -35,7 +35,7 @@ export const ButtonStyles = StyleSheet.create({
         paddingBottom: 20,
     },
     button: {
-        backgroundColor: "#4a90e2",
+        backgroundColor: "#484764",
         padding: 15,
         borderRadius: 8,
         width: "auto",

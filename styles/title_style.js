@@ -17,4 +17,10 @@ export const TitleStyles = StyleSheet.create({
         color: "#666",
         marginTop: 8,
     },
+
+    text: {
+        fontSize: 18,
+        color: "#fff",
+        marginTop: 8,
+    }
 })

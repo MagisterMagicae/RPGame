@@ -1,3 +1,4 @@
+import { TitleStyles } from '@/styles/title_style';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
@@ -67,7 +68,7 @@ const ShopScreen = observer(() => {
                         source={fightStore.player.inventory[itemID].getSpriteDirectory()}
                     />
                 </TouchableOpacity>
-                <Text style={{ marginTop: 5, textAlign: 'center' }}>
+                <Text style={[TitleStyles.text, { marginTop: 5, textAlign: 'center' }]}>
                     {fightStore.player.inventory[itemID].getCost()} Gold {"\n"}
                     {fightStore.player.inventory[itemID].getIsWeapon() ?
                         `Level ${fightStore.player.inventory[itemID].getAmount()}` :
@@ -120,18 +121,18 @@ const ShopScreen = observer(() => {
                         source={require('../assets/images/Herz_pink.png')}
                         style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
                     />
-                    <Text>
+                    <Text style={TitleStyles.text}>
                         HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
                     </Text>
                 </View>
 
 
 
-                <Text style={{ marginVertical: 5 }}>
+                <Text style={[TitleStyles.text, { marginVertical: 5 }]}>
                     Gold: {fightStore.player ? fightStore.player.getGold() : 0}
                 </Text>
 
-                <Text style={{ marginBottom: 0 }}>{fightStore.fightDescription || 'Shop'}</Text>
+                <Text style={[TitleStyles.text, { marginBottom: 0}]}>{fightStore.fightDescription || 'Shop'}</Text>
             </View>
 
             <View style={ButtonStyles.imageButtonContainer}>

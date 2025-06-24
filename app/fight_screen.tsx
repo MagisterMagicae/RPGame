@@ -1,3 +1,4 @@
+import { TitleStyles } from '@/styles/title_style';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
@@ -64,7 +65,7 @@ const FightScreen = observer(() => {
                         setItemDescriptionPopUp(true);
                     }}
                 >
-                    <Text>{fightStore.player?.inventory[itemID].getAmount()}</Text>
+                    <Text style={TitleStyles.text}>{fightStore.player?.inventory[itemID].getAmount()}</Text>
 
                     <Image
                         style={ImageStyles.icon}
@@ -121,7 +122,7 @@ const FightScreen = observer(() => {
                 }
             >
 
-                <Text style={{ marginBottom: 10 }}>
+                <Text style={[TitleStyles.text,{ marginBottom: 10 }]}>
                     {fightStore.fightCount}
                 </Text>
 
@@ -131,7 +132,7 @@ const FightScreen = observer(() => {
                         source={require('../assets/images/Herz_gruen.png')}
                         style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
                     />
-                    <Text>
+                    <Text style={TitleStyles.text}>
                         HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
                     </Text>
                 </View>
@@ -140,7 +141,7 @@ const FightScreen = observer(() => {
                     style={ImageStyles.monsterImage}
                     source={fightStore.currentMonster?.getSpriteDirectory()}
                 />
-                <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
+                <Text style={TitleStyles.text}>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
 
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
@@ -149,7 +150,7 @@ const FightScreen = observer(() => {
                         source={require('../assets/images/Herz_pink.png')}
                         style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
                     />
-                    <Text>
+                    <Text style={TitleStyles.text}>
                         HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
                     </Text>
                 </View>
