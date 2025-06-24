@@ -28,7 +28,7 @@ export abstract class Entity {
 
         this.inventory[0] = new Item(0, "Schwert", this.startInventory[0], EffectType.SCHWERT, true, false, true, 10, require("../../assets/images/Schwert.png"),"mensareis") //Bsp. Cost: 10, bsp Beschreibung: "mensareis"
         this.inventory[1] = new Item(1, "Bogen", this.startInventory[1], EffectType.BOGEN, true, false, true, 10, require("../../assets/images/Bogen.png"))
-        this.inventory[2] = new Item(2, "Stab", this.startInventory[2], EffectType.STAB, true, true, true, 10, require("../../assets/images/Stab.png"))
+        this.inventory[2] = new Item(2, "Stab", this.startInventory[2], EffectType.STAB, true, false, true, 10, require("../../assets/images/Stab.png"))
         this.inventory[3] = new Item(3, "Trank", this.startInventory[3], EffectType.HEILUNG, false, true, true, 10, require("../../assets/images/Trank.png"))
         this.inventory[4] = new Item(4, "Kugel", this.startInventory[4], EffectType.ATKBOOST, false, true, true, 10, require("../../assets/images/Kugel.png"))
         this.inventory[5] = new Item(5, "Umhang", this.startInventory[5], EffectType.DEFBOOST, false, true, true, 10, require("../../assets/images/Umhang.png"))

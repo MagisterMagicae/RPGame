@@ -130,7 +130,7 @@ export class FightStore {
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");
             this.fightCount++; // Increment fight count after winning a fight
-            this.player?.mathMaxHealthPoints(10);
+            this.player?.mathMaxHealthPoints(15);
         }
     }
 
