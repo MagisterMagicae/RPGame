@@ -9,6 +9,8 @@ export class FightStore {
     playerVictory: boolean = false;
     currentMonster: Monster | null = null;
     player: Player | null = null;
+    inShop: boolean = false;
+    fileExists = false;
     fightDescription: string = '';
     fightCount: number = 1;
     rewardText = 'Du erhältst: ';
@@ -139,6 +141,7 @@ export class FightStore {
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");
             this.fightCount++; // Increment fight count after winning a fight
+            this.inShop = ((this.fightCount % 2 === 0) && (this.fightCount !== 1));
             this.player?.mathMaxHealthPoints(15);
         }
     }
@@ -150,3 +153,4 @@ export class FightStore {
         this.setDescription('');
     }
 } 
+export default FightStore;

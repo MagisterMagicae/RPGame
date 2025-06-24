@@ -4,6 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { Image, ImageBackground, Modal, Text, TouchableOpacity, View } from "react-native";
+import { MMKV } from 'react-native-mmkv';
 import { ButtonStyles } from '../styles/button_style';
 import { ImageStyles } from '../styles/image_style';
 import { MetaStyles } from '../styles/meta_style';
@@ -19,6 +20,10 @@ type RootStackParamList = {
 
 type FightScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FightScreen'>;
 
+const storage = new MMKV({
+    id:"fileStorage"
+    });
+
 const FightScreen = observer(() => {
     const navigation = useNavigation<FightScreenNavigationProp>();
     const { fightStore } = useRootStore();
@@ -29,6 +34,8 @@ const FightScreen = observer(() => {
     // Wenn der Spieler verliert, dann wird man auf den StartScreen zurückgeleitet
     useEffect(() => {
         if (fightStore.gameOver) {
+            storage.clearAll(); 
+            fightStore.fileExists = false;
             // kleiner Delay
             setTimeout(() => {
                 fightStore.player = null;

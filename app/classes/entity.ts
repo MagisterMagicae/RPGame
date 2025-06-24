@@ -42,6 +42,12 @@ export abstract class Entity {
     getMaxAttack(): number { return this.maxAttack; }
     getMaxDefense(): number { return this.maxDefense; }
     getSpriteDirectory(): number { return this.sprite; }
+    setCurrentHealthPoints(amount: number){  
+        this.currentHealthPoints = amount;
+    }
+    setMaxHealthPoints(amount: number){this.maxHealthPoints = amount;}
+    setCurrentAttack(amount: number){this.currentAttack = amount;}
+    setCurrentDefense(amount: number){this.currentDefense = amount;}
 
     //math Methoden:
     //Erhöhe oder verringere aktuellen Wert um amount. Der Wert darf außerdem nicht unter 0 fallen und auch nicht über dem Maximum liegen
@@ -74,3 +80,4 @@ export abstract class Entity {
         this.currentDefense = Math.min(this.currentDefense, this.maxDefense);
     }
 }
+export default Entity;

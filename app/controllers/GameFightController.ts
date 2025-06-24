@@ -203,3 +203,4 @@ export class GameFightController {
         fightStore.resetFight();
     }
 }
+export default GameFightController;
