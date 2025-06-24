@@ -43,6 +43,7 @@ const FightScreen = observer(() => {
             // kleiner Delay
             setTimeout(() => {
                 fightStore.player = null;
+                fightStore.resetFight();
                 navigation.navigate('StartScreen');
             }, 2000);
         }
