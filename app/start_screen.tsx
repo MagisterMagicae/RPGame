@@ -1,8 +1,9 @@
+import { ImageStyles } from '@/styles/image_style';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { Text, TouchableOpacity, View } from "react-native";
 import { MMKV } from 'react-native-mmkv';
+import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { ButtonStyles } from '../styles/button_style';
 import { MetaStyles } from '../styles/meta_style';
 import { TitleStyles } from '../styles/title_style';
@@ -43,6 +44,7 @@ const StartScreen = observer(({ navigation }: Props) => {
         if (!fightStore.player) {
             fightStore.initializePlayer("Spieler");
         }
+
         try{
             if(fightStore.fileExists){
             if(!fightStore.player){
@@ -120,37 +122,44 @@ const StartScreen = observer(({ navigation }: Props) => {
             navigation.navigate('FightScreen');
             
         }
+
     };
 
     return (
-        <View style={MetaStyles.container}>
-            <View style={TitleStyles.titleContainer}>
-                <Text style={TitleStyles.title}>RPG</Text>
-                <Text style={TitleStyles.subtitle}>Game</Text>
-            </View>
 
-            <View style={ButtonStyles.buttonContainer}>
-                <TouchableOpacity 
-                    style={ButtonStyles.button} 
-                    onPress={handleStartGame}
-                >
-                    <Text style={ButtonStyles.buttonText}>
+        <View style={MetaStyles.container}>
+                    
+            <ImageBackground
+                style={ImageStyles.ImageBackground}
+                source={require('../assets/images/brickwall_v02.png')}
+            >
+
+                <View style={TitleStyles.titleContainer}>
+                    <Text style={TitleStyles.title}>RPG</Text>
+                    <Text style={TitleStyles.subtitle}>Game</Text>
+                </View>
+
+                <View style={ButtonStyles.buttonContainer}>
+                    <TouchableOpacity
+                        style={ButtonStyles.button}
+                        onPress={handleStartGame}
+                    >
+                        <Text style={ButtonStyles.buttonText}>
                         {fightStore.fileExists ? 'Weiterspielen' : 'Neues Spiel'}
                     </Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-                <TouchableOpacity 
-                    style={ButtonStyles.button}
-                    onPress={deleteData}
+                    <TouchableOpacity
+                        style={ButtonStyles.button}
+                        onPress={deleteData}
                     >
-                    <Text style={ButtonStyles.buttonText}>Spielstand löschen</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={ButtonStyles.button}>
-                    <Text style={ButtonStyles.buttonText}>Credits</Text>
-                </TouchableOpacity>
-            </View>
+                        <Text style={ButtonStyles.buttonText}>Spielstand löschen</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         </View>
+
+
     );
 });
 

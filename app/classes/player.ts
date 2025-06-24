@@ -21,7 +21,7 @@ export class Player extends Entity {
         currentDefense: number = 10,
         maxDefense: number = 999,
 
-        startInventory: Array<number> = [1, 1, 3, 5, 5, 2],
+        startInventory: Array<number> = [1, 1, 1, 5, 5, 5],
 
         gold: number = 0
     ) {

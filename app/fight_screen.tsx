@@ -120,6 +120,33 @@ const FightScreen = observer(() => {
                     </View>
                 </View>
             </Modal>
+
+            <View style={ButtonStyles.imageButtonContainer}>
+                <View style={ButtonStyles.multiButton} >
+                    <TouchableOpacity
+                        style={[ButtonStyles.imageButton, {marginTop: 10}]}
+                        onPress={() => {
+                            navigation.navigate('StartScreen')
+                        }}
+                    >
+                        <Image
+                            style={{ width: 30, height: 20, resizeMode: 'contain', }}
+                            source={require('../assets/images/arrow.png')}
+                        />
+
+                    </TouchableOpacity>
+
+                        <Text style={[TitleStyles.text]}>
+                            {fightStore.currentMonster?.getName()}
+                        </Text>
+
+                        
+                        <Text style={[TitleStyles.text]}>
+                            Nr. {fightStore.fightCount}
+                        </Text>
+                </View>
+            </View>
+
             <ImageBackground
                 style={ImageStyles.partialBackground}
                 source={
@@ -128,10 +155,6 @@ const FightScreen = observer(() => {
                         : require('../assets/images/bg_blue_v02.png')
                 }
             >
-
-                <Text style={[TitleStyles.text,{ marginBottom: 10 }]}>
-                    {fightStore.fightCount}
-                </Text>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
 
