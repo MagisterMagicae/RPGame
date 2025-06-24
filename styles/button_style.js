@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 
 export const ButtonStyles = StyleSheet.create({
     buttonContainer: {
+        fontFamily:"Minecraft",
         width: "80%",
         flex: 1,
         justifyContent: 'center',
@@ -12,6 +13,7 @@ export const ButtonStyles = StyleSheet.create({
         marginTop: 8,
     },
         shopButtonContainer: {
+            fontFamily:"Minecraft",
         width: "80%",
         flex: 1,
         justifyContent: 'center',
@@ -20,6 +22,7 @@ export const ButtonStyles = StyleSheet.create({
         marginTop: 1,
     },
     shopContainer: {
+        fontFamily:"Minecraft",
         width: "80%",
         justifyContent: 'center',
         marginHorizontal: 16,
@@ -28,6 +31,7 @@ export const ButtonStyles = StyleSheet.create({
         marginBottom: 8,
     },
     imageButtonContainer: {
+        fontFamily:"Minecraft",
         width: "80%",
         justifyContent: 'flex-end',
         marginHorizontal: 0,
@@ -35,23 +39,27 @@ export const ButtonStyles = StyleSheet.create({
         paddingBottom: 20,
     },
     button: {
+        fontFamily:"Minecraft",
         backgroundColor: "#484764",
         padding: 15,
         borderRadius: 8,
         width: "auto",
     },
     buttonText: {
+        fontFamily:"Minecraft",
         color: "white",
         fontSize: 18,
         textAlign: "center",
         fontWeight: "500",
     },
     multiButton: {
+        fontFamily:"Minecraft",
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: 5,
     },
     imageButton: {
+        fontFamily:"Minecraft",
         backgroundColor: "#00000000",
         padding: 0,
         borderRadius: 0,

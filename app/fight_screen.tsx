@@ -1,6 +1,7 @@
 import { TitleStyles } from '@/styles/title_style';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { Image, ImageBackground, Modal, Text, TouchableOpacity, View } from "react-native";
@@ -30,6 +31,9 @@ const FightScreen = observer(() => {
     const [controller] = React.useState(() => new GameFightController());
     const [ItemDescriptionPopUp, setItemDescriptionPopUp] = React.useState(false);
     const [selectedItemID, setSelectedItemID] = React.useState<number | null>(null);
+    const [fontsLoaded] = useFonts({
+        Minecraft: require("../assets/fonts/Minecraft.ttf")
+    });
 
     // Wenn der Spieler verliert, dann wird man auf den StartScreen zurückgeleitet
     useEffect(() => {

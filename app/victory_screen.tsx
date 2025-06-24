@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { Text, TouchableOpacity, View } from "react-native";
@@ -8,7 +9,6 @@ import { ButtonStyles } from '../styles/button_style';
 import { MetaStyles } from '../styles/meta_style';
 import { TitleStyles } from '../styles/title_style';
 import { useRootStore } from './stores/RootStore';
-
 
 type RootStackParamList = {
     StartScreen: undefined;
@@ -26,7 +26,9 @@ type VictoryScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Vict
 const VictoryScreen = observer(() => {
     const navigation = useNavigation<VictoryScreenNavigationProp>();
     const { fightStore } = useRootStore();
-    
+    const [fontsLoaded] = useFonts({
+            Minecraft: require("../assets/fonts/Minecraft.ttf")
+        });
     const startNextRound = () => {
         fightStore.resetFight();
         //Speichern der Daten

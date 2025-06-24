@@ -31,7 +31,7 @@ export class FightStore {
     }
 
     mathReward() {
-        this.rewardText = 'Du erhältst: ';
+        this.rewardText = 'Du erhältst: \n';
         var rewardAmount = Math.floor(Math.random() * 3 + 1); //Es können 1-3 Items erhalten werden, Anzahl zufällig
         while (rewardAmount > 0) {
             this.rewardTypes[Math.floor(Math.random() * 6)] += 1; //Erhöhung der Itemanzahl bzw. des Waffenlevels
@@ -43,18 +43,17 @@ export class FightStore {
                 console.log(i);
                 if (i < 3) { //Waffen*level* werden erhalten
                     console.log(this.player?.inventory[i].getName() + 'level wird gerade eingefügt');
-                    this.rewardText += this.player?.inventory[i].getName() + 'level, ';
+                    this.rewardText += this.player?.inventory[i].getName() + 'level\n';
                 }
                 else {
                     console.log(this.player?.inventory[i].getName() + ' wird gerade eingefügt');
 
-                    this.rewardText += this.player?.inventory[i].getName() + ', ';
+                    this.rewardText += this.player?.inventory[i].getName() + '\n';
                 }
             }
             this.player?.inventory[i].mathAmount(this.rewardTypes[i]);
         }
-        this.rewardText = this.rewardText.slice(0, this.rewardText.length - 2);
-        this.rewardText += '.';
+        
         console.log(this.rewardText);
         for (var i = 0; i < 6; i++) {
             this.rewardTypes[i] = 0;
@@ -112,17 +111,17 @@ export class FightStore {
                 break;
             case 3:
                 name = "Miniboss Golem";
-                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.1), Math.floor(Hp*1.1), Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Golem.png"), [1, 3, 1, 0, 1, 1], EffectType.STAB, EffectType.SCHWERT);
+                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.1), Math.floor(Hp*1.1), Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Golem.png"), [1, 3, 1, 0, 1, 1], EffectType.HEILUNG, EffectType.HEILUNG);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 4:
                 name = "Miniboss Drache";
-                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.1), Math.floor(Hp*1.1),  Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Drache.png"), [1, 3, 1, 1, 0, 0], EffectType.STAB, EffectType.SCHWERT);
+                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.1), Math.floor(Hp*1.1),  Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Drache.png"), [1, 3, 1, 1, 0, 0], EffectType.HEILUNG, EffectType.HEILUNG);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 5:
                 name = "Boss Hoellenhund";
-                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.2),Math.floor(Hp*1.2), Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 10, 10], require("../../assets/images/Hoellenhund.png"), [1, 1, 1, 1, 1, 1], EffectType.STAB, EffectType.SCHWERT);
+                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.2),Math.floor(Hp*1.2), Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 10, 10], require("../../assets/images/Hoellenhund.png"), [1, 1, 1, 1, 1, 1], EffectType.HEILUNG, EffectType.HEILUNG);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
         }

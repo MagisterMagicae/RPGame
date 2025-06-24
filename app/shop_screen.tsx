@@ -1,6 +1,7 @@
 import { TitleStyles } from '@/styles/title_style';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
@@ -27,6 +28,9 @@ const ShopScreen = observer(() => {
     const [ItemDescriptionPopUp, setItemDescriptionPopUp] = React.useState(false);
     const [selectedItemID, setSelectedItemID] = React.useState<number | null>(null);
     const [goldUpdate, setGoldUpdate] = React.useState(0);
+    const [fontsLoaded] = useFonts({
+            Minecraft: require("../assets/fonts/Minecraft.ttf")
+        });
 
     const handleStartFight = () => {
         fightStore.fightDescription = "Der nächste Kampf beginnt!";

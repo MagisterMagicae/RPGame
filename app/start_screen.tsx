@@ -1,9 +1,10 @@
 import { ImageStyles } from '@/styles/image_style';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { MMKV } from 'react-native-mmkv';
 import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { MMKV } from 'react-native-mmkv';
 import { ButtonStyles } from '../styles/button_style';
 import { MetaStyles } from '../styles/meta_style';
 import { TitleStyles } from '../styles/title_style';
@@ -31,6 +32,9 @@ type Props = {
 const StartScreen = observer(({ navigation }: Props) => {
     const { fightStore } = useRootStore();
     fightStore.fileExists = storage.size > 0;
+    const [fontsLoaded] = useFonts({
+            Minecraft: require("../assets/fonts/Minecraft.ttf")
+        });
     const deleteData = () => {
     storage.clearAll();
     fightStore.fileExists = false;

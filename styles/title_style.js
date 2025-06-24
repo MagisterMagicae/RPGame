@@ -8,18 +8,20 @@ export const TitleStyles = StyleSheet.create({
         marginBottom: 40,
     },
     title: {
-        fontSize: 100,
-        fontWeight: "bold",
+        fontFamily:"Minecraft",
+        fontSize: 85,
         color: "#fff",
         marginTop: 120,
     },
     subtitle: {
-        fontSize: 30,
+        fontFamily:"Minecraft",
+        fontSize: 25,
         color: "#fff",
         marginTop: 8,
     },
 
     text: {
+        fontFamily:"Minecraft",
         fontSize: 18,
         color: "#fff",
         marginTop: 8,
