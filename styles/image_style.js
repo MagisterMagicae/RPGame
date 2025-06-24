@@ -1,21 +1,32 @@
 import { StyleSheet } from "react-native";
 
 export const ImageStyles = StyleSheet.create({
-    monsterImage:{
+    monsterImage: {
         width: 200,
         height: 200,
         resizeMode: 'contain',
         marginVertical: 10
     },
-    icon:{
+    icon: {
         width: 75,
         height: 75,
         resizeMode: 'contain'
     },
-    shopImage:{
+    shopImage: {
         width: 200,
         height: 200,
         resizeMode: 'contain',
         marginVertical: 10,
-    }
+    },
+
+ partialBackground: {
+    width: 500,
+    height: 400,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginTop: 0,
+    paddingTop: 0,
+}
+
+
 })

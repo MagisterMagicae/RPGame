@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
+import { Image, ImageBackground, Modal, Text, TouchableOpacity, View } from "react-native";
 import { ButtonStyles } from '../styles/button_style';
 import { ImageStyles } from '../styles/image_style';
 import { MetaStyles } from '../styles/meta_style';
@@ -112,41 +112,51 @@ const FightScreen = observer(() => {
                     </View>
                 </View>
             </Modal>
-            <Text style={{ marginBottom: 10 }}>
-                {fightStore.fightCount}
-            </Text>
+            <ImageBackground
+                style={ImageStyles.partialBackground}
+                source={
+                    fightStore.currentMonster?.getName() === "Boss Hoellenhund"
+                        ? require('../assets/images/bg_red_v02.png')
+                        : require('../assets/images/bg_blue_v02.png')
+                }
+            >
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                <Text style={{ marginBottom: 10 }}>
+                    {fightStore.fightCount}
+                </Text>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+
+                    <Image
+                        source={require('../assets/images/Herz_gruen.png')}
+                        style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
+                    />
+                    <Text>
+                        HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
+                    </Text>
+                </View>
 
                 <Image
-                    source={require('../assets/images/Herz_gruen.png')}
-                    style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
+                    style={ImageStyles.monsterImage}
+                    source={fightStore.currentMonster?.getSpriteDirectory()}
                 />
-                <Text>
-                    HP: {fightStore.currentMonster ? `${fightStore.currentMonster.getCurrentHealthPoints()}/${fightStore.currentMonster.getMaxHealthPoints()}` : '0/0'}
-                </Text>
-            </View>
+                <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
 
-            <Image
-                style={ImageStyles.monsterImage}
-                source={fightStore.currentMonster?.getSpriteDirectory()}
-            />
-             <Text>{fightStore.fightDescription || 'Der Kampf beginnt...'}</Text>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop:10 }}>
-                
-                <Image
-                    source={require('../assets/images/Herz_pink.png')}
-                    style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
-                />
-                <Text>
-                    HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
-                </Text>
-            </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
+
+                    <Image
+                        source={require('../assets/images/Herz_pink.png')}
+                        style={{ width: 30, height: 20, resizeMode: 'contain', marginLeft: 8 }}
+                    />
+                    <Text>
+                        HP: {fightStore.player ? `${fightStore.player.getCurrentHealthPoints()}/${fightStore.player.getMaxHealthPoints()}` : '0/0'}
+                    </Text>
+                </View>
+            </ImageBackground>
 
 
 
-           
 
             <View style={ButtonStyles.imageButtonContainer}>
                 <View style={ButtonStyles.multiButton}>
@@ -165,7 +175,8 @@ const FightScreen = observer(() => {
                 </View>
             </View>
 
-        </View>
+        </View >
+
     );
 });
 
