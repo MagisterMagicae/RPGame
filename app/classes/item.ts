@@ -30,8 +30,11 @@ export class Item {
     getSpriteDirectory(): number { return this.sprite; }
     getItemDescription(): String { return this.itemDescription; }
 
+    setAmount(a: number): void{ this.amount = a; }
+
     toggleIsVisible(): void { this.isVisible = !(this.isVisible); }
     mathAmount(a: number): void { 
         this.amount += a;}
         //this.amount = Math.max(this.amount, Math.max(0, this.amount + a)); }
 }
+export default Item;

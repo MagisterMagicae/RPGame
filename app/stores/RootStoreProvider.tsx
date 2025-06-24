@@ -14,3 +14,5 @@ export const RootStoreProvider: React.FC<RootStoreProviderProps> = ({ children }
         </RootStoreContext.Provider>
     );
 }; 
+
+export default RootStoreProvider;

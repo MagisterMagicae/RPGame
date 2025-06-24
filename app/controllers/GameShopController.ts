@@ -30,3 +30,4 @@ export class GameShopController {
     this.navigation.navigate('FightScreen');
   }
 }
+export default GameShopController;

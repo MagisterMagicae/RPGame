@@ -41,6 +41,11 @@ export class Player extends Entity {
             this.gold = gold;
     }
 
+    setGold(amount: number){
+        console.log("Wir sind im setGold der Klasse Player");
+        this.gold = amount;
+    }
+
     getGold(): number { return this.gold; }
 
     spendGold(amount: number): boolean {
@@ -64,3 +69,4 @@ export class Player extends Entity {
         }
     }
 }
+export default Player;
