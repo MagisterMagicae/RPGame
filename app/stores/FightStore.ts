@@ -32,7 +32,7 @@ export class FightStore {
     }
 
     mathReward() {
-        this.rewardText = 'Du bekommst: \n';
+        this.rewardText = 'Du bekommst: \n\n30 Gold\n';
         var rewardAmount = Math.floor(Math.random() * 3 + 1); //Es können 1-3 Items erhalten werden, Anzahl zufällig
         while (rewardAmount > 0) {
             this.rewardTypes[Math.floor(Math.random() * 6)] += 1; //Erhöhung der Itemanzahl bzw. des Waffenlevels
@@ -44,7 +44,7 @@ export class FightStore {
                 console.log(i);
                 if (i < 3) { //Waffen*level* werden erhalten
                     console.log(this.player?.inventory[i].getName() + 'level wird gerade eingefügt');
-                    this.rewardText += this.player?.inventory[i].getName() + 'level\n';
+                    this.rewardText += this.rewardTypes[i] + 'x ' + this.player?.inventory[i].getName() + 'level\n';
                 }
                 else {
                     console.log(this.player?.inventory[i].getName() + ' wird gerade eingefügt');

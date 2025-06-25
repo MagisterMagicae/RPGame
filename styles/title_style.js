@@ -9,13 +9,16 @@ export const TitleStyles = StyleSheet.create({
     },
     title: {
         fontFamily:"Minecraft",
-        fontSize: 65,
+
+        fontSize: 80,
         color: "#fff",
         marginTop: 150,
     },
     subtitle: {
         fontFamily:"Minecraft",
-        fontSize: 13,
+
+        fontSize: 20,
+
         color: "#fff",
         marginTop: 8,
     },
