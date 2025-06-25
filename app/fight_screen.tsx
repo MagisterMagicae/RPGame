@@ -52,17 +52,19 @@ const FightScreen = observer(() => {
 
     // Wenn der Spieler gewinnt, dann wird man auf den FightScreen zurückgeleitet
     useEffect(() => {
+        if(!fightStore.rewardsTaken){
+            
         if (fightStore.playerVictory) {
             // kleiner Delay
             setTimeout(() => {
-                console.log("Gleich wird zum VictoryScreen navigiert");
                 fightStore.resetFight();
                 fightStore.player?.mathMaxHealthPoints(15);
                 fightStore.mathReward();
-                fightStore.fightCount++; // Increment fight count after winning a fight
-                navigation.navigate('VictoryScreen');
+                fightStore.rewardsTaken = true;
+                navigation.navigate('VictoryScreen');              
             }, 2000);
         }
+    }
     }, [fightStore.playerVictory]);
 
     const button = (itemID: number) => {

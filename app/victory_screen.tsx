@@ -31,6 +31,7 @@ const VictoryScreen = observer(() => {
         });
         
     const startNextRound = () => {
+        fightStore.rewardsTaken = false;
         fightStore.resetFight();
         //Speichern der Daten
             //-----------------------------------Misc-Data-----------------------------------//

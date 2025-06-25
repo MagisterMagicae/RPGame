@@ -13,6 +13,7 @@ export class FightStore {
     fileExists = false;
     fightDescription: string = '';
     fightCount: number = 1;
+    rewardsTaken: boolean = false;
     rewardText = 'Du erhältst: ';
     rewardTypes = [0, 0, 0, 0, 0, 0];
     monsterTurn = false;
@@ -139,6 +140,7 @@ export class FightStore {
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");
             this.inShop = ((this.fightCount % 2 === 0) && (this.fightCount !== 1));
+            this.fightCount++;
         }
     }
 
