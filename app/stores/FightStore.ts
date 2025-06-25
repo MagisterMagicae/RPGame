@@ -111,12 +111,12 @@ export class FightStore {
                 break;
             case 3:
                 name = "Miniboss Golem";
-                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.1), Math.floor(Hp*1.1), Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Golem.png"), [1, 3, 1, 0, 1, 1], EffectType.HEILUNG, EffectType.HEILUNG);
+                this.currentMonster = new Monster(2, name, Hp, Hp, Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 5, 10, 10], require("../../assets/images/Golem.png"), [1, 3, 1, 0, 1, 1], EffectType.HEILUNG, EffectType.HEILUNG);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 4:
                 name = "Miniboss Drache";
-                this.currentMonster = new Monster(2, name, Math.floor(Hp*1.1), Math.floor(Hp*1.1),  Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Drache.png"), [1, 3, 1, 1, 0, 0], EffectType.HEILUNG, EffectType.HEILUNG);
+                this.currentMonster = new Monster(2, name, Hp, Hp,  Math.floor(Att*1.1), 999, Math.floor(Dev*1.1), 999, [2, 1, 0, 10, 0, 2], require("../../assets/images/Drache.png"), [1, 3, 1, 1, 0, 0], EffectType.HEILUNG, EffectType.HEILUNG);
                 this.setDescription(`Ein wilder ${name} erscheint!`);
                 break;
             case 5:
@@ -135,13 +135,10 @@ export class FightStore {
     }
 
     setPlayerVictory(value: boolean) {
-        this.mathReward();
         this.playerVictory = value;
         if (value) {
             this.setDescription("Sieg! Du hast gewonnen!");
-            this.fightCount++; // Increment fight count after winning a fight
             this.inShop = ((this.fightCount % 2 === 0) && (this.fightCount !== 1));
-            this.player?.mathMaxHealthPoints(15);
         }
     }
 

@@ -41,7 +41,7 @@ export abstract class Entity {
     getMaxHealthPoints(): number { return this.maxHealthPoints; }
     getMaxAttack(): number { return this.maxAttack; }
     getMaxDefense(): number { return this.maxDefense; }
-    getSpriteDirectory(): number { return this.sprite; }
+    getSpriteDirectory(): number {return this.sprite; }
     setCurrentHealthPoints(amount: number){  
         this.currentHealthPoints = amount;
     }

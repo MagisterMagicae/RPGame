@@ -44,6 +44,7 @@ const FightScreen = observer(() => {
             setTimeout(() => {
                 fightStore.player = null;
                 fightStore.resetFight();
+                fightStore.inShop = false;
                 navigation.navigate('StartScreen');
             }, 2000);
         }
@@ -54,6 +55,11 @@ const FightScreen = observer(() => {
         if (fightStore.playerVictory) {
             // kleiner Delay
             setTimeout(() => {
+                console.log("Gleich wird zum VictoryScreen navigiert");
+                fightStore.resetFight();
+                fightStore.player?.mathMaxHealthPoints(15);
+                fightStore.mathReward();
+                fightStore.fightCount++; // Increment fight count after winning a fight
                 navigation.navigate('VictoryScreen');
             }, 2000);
         }
