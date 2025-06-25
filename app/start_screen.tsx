@@ -90,8 +90,30 @@ const StartScreen = observer(({ navigation }: Props) => {
             fightStore.currentMonster?.inventory[3].setAmount(storage.getNumber("monHeilung") as number);
             fightStore.currentMonster?.inventory[4].setAmount(storage.getNumber("monAtkBuff") as number);
             fightStore.currentMonster?.inventory[5].setAmount(storage.getNumber("monDefBuff") as number);
-            fightStore.currentMonster?.setSprite((storage.getNumber("monSprite") as number));
-            console.log(storage.getNumber("monSprite") as number);
+            switch(fightStore.currentMonster?.getName()){
+                case "Werwolf":
+                    fightStore.currentMonster.setSprite(require("../assets/images/Werwolf.png"));//15:werwolf
+                    break;
+                case "Greif":
+                    fightStore.currentMonster.setSprite(require("../assets/images/Greif.png"));
+                    break;
+                case "Troll":
+                    fightStore.currentMonster.setSprite(require("../assets/images/Troll.png"));
+                    break;
+                case "Miniboss Golem":
+                    fightStore.currentMonster.setSprite(require("../assets/images/Golem.png"));
+                    break;
+                case "Miniboss Drache":
+                    fightStore.currentMonster.setSprite(require("../assets/images/Drache.png"));
+                    break;
+                case "Boss Feuerhund":
+                    fightStore.currentMonster.setSprite(require("../assets/images/Hoellenhund.png"));
+                    break;
+                default:
+                    break;
+            }
+            //fightStore.currentMonster?.setSprite((storage.getNumber("monSprite") as number));
+            //console.log(storage.getNumber("monSprite") as number);
             //fightStore.currentMonster?.setSprite(20);
             fightStore.currentMonster!.fightValue[0] = storage.getNumber("monFightVal0") as number;
             fightStore.currentMonster!.fightValue[1] = storage.getNumber("monFightVal1") as number;

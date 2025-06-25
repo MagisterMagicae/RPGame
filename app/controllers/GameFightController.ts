@@ -88,7 +88,7 @@ export class GameFightController {
         }
 
         // Nur Gegner tot → Victory
-        if (monsterDead) {
+        if (monsterDead && fightStore.playerVictory == false) {
             fightStore.setPlayerVictory(true);
             fightStore.setDescription(`Du hast ${fightStore.currentMonster.getName()} besiegt!`);
             return;
