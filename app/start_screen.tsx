@@ -90,8 +90,9 @@ const StartScreen = observer(({ navigation }: Props) => {
             fightStore.currentMonster?.inventory[3].setAmount(storage.getNumber("monHeilung") as number);
             fightStore.currentMonster?.inventory[4].setAmount(storage.getNumber("monAtkBuff") as number);
             fightStore.currentMonster?.inventory[5].setAmount(storage.getNumber("monDefBuff") as number);
-            //fightStore.currentMonster?.setSprite(storage.getNumber("monSprite") as number);
-            fightStore.currentMonster?.setSprite(storage.getNumber("monSprite") as number);
+            fightStore.currentMonster?.setSprite((storage.getNumber("monSprite") as number));
+            console.log(storage.getNumber("monSprite") as number);
+            //fightStore.currentMonster?.setSprite(20);
             fightStore.currentMonster!.fightValue[0] = storage.getNumber("monFightVal0") as number;
             fightStore.currentMonster!.fightValue[1] = storage.getNumber("monFightVal1") as number;
             fightStore.currentMonster!.fightValue[2] = storage.getNumber("monFightVal2") as number;

@@ -29,6 +29,7 @@ const VictoryScreen = observer(() => {
     const [fontsLoaded] = useFonts({
             Minecraft: require("../assets/fonts/Minecraft.ttf")
         });
+        
     const startNextRound = () => {
         fightStore.resetFight();
         //Speichern der Daten
